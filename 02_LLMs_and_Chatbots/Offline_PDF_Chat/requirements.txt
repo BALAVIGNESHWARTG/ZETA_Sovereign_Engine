@@ -2,9 +2,5 @@ streamlit
 langchain
 langchain-community
 langchain-groq
-langchain-huggingface
 pypdf
-faiss-cpu
-sentence-transformers
-
-torchvision
+rank_bm25

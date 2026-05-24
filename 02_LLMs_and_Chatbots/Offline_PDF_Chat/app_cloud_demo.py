@@ -3,12 +3,14 @@ import os
 import tempfile
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import FAISS
-# Using HuggingFace for Free Cloud Embeddings instead of Local Ollama
-from langchain_community.embeddings import HuggingFaceEmbeddings 
+
+# Using Ultra-Lightweight BM25 Search to guarantee 100% Cloud Uptime
+from langchain_community.retrievers import BM25Retriever 
+
 # Using Groq for Blazing Fast Free Cloud Inference
 from langchain_groq import ChatGroq
-# Using Modern LCEL Architecture to avoid Cloud Dependency Conflicts
+
+# Using Modern LCEL Architecture
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
@@ -25,10 +27,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.title("☁️ Z.E.T.A. Cloud Demo: PDF Intelligence")
-st.markdown("**Note:** This is the Cloud Demo version using Groq. For the strictly secure offline version, run `app.py` locally.")
+st.markdown("**Note:** This is the ultra-lightweight Cloud Demo version. For the highly secure, FAISS-powered offline version, clone the repo and run `app.py` locally.")
 
-# Require the user (or recruiter) to input a Groq API key, so you are NEVER charged money!
-# Groq API keys are 100% free at console.groq.com
+# Require the user to input a Groq API key
 user_api_key = st.sidebar.text_input("Enter Groq API Key (Free at console.groq.com)", type="password")
 
 st.sidebar.header("Data Ingestion")
@@ -39,13 +40,14 @@ def process_pdf(pdf_path):
     loader = PyPDFLoader(pdf_path)
     data = loader.load()
     
+    # Split text into manageable chunks
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     docs = text_splitter.split_documents(data)
     
-    # HuggingFace is 100% free for embeddings on the cloud
-    embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-    vectorstore = FAISS.from_documents(docs, embeddings)
-    return vectorstore
+    # Use BM25 for pure-python, ML-free instant retrieval on Streamlit Cloud
+    retriever = BM25Retriever.from_documents(docs)
+    retriever.k = 3
+    return retriever
 
 if uploaded_file is not None:
     if not user_api_key:
@@ -56,18 +58,20 @@ if uploaded_file is not None:
         with open(temp_filepath, "wb") as f:
             f.write(uploaded_file.getvalue())
 
-        st.sidebar.success("File uploaded to ephemeral cloud storage.")
+        st.sidebar.success("File uploaded and processed.")
         
-        vectorstore = process_pdf(temp_filepath)
-        st.sidebar.success("Vector Database Built!")
+        retriever = process_pdf(temp_filepath)
+        st.sidebar.success("Search Engine Ready!")
         
         # Initialize Free Groq Model
         llm = ChatGroq(temperature=0, model_name="llama3-8b-8192", groq_api_key=user_api_key)
         
-        # Modern LCEL Chain Architecture
-        prompt_template = ChatPromptTemplate.from_template("Answer based strictly on the context provided below.\n\nContext:\n{context}\n\nQuestion: {input}")
+        # LCEL Architecture
+        prompt_template = ChatPromptTemplate.from_template(
+            "You are ZETA, an elite intelligence assistant. Answer based strictly on the context provided below.\n\nContext:\n{context}\n\nQuestion: {input}"
+        )
         doc_chain = create_stuff_documents_chain(llm, prompt_template)
-        qa_chain = create_retrieval_chain(vectorstore.as_retriever(search_kwargs={"k": 3}), doc_chain)
+        qa_chain = create_retrieval_chain(retriever, doc_chain)
         
         st.markdown("### Cloud Chat Interface")
         
