@@ -11,8 +11,8 @@ from langchain_community.retrievers import BM25Retriever
 from langchain_groq import ChatGroq
 
 # Using Modern LCEL Architecture
-from langchain.chains import create_retrieval_chain
-from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain_core.runnables import RunnablePassthrough
+from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 
 st.set_page_config(page_title="ZETA PDF Intel (Cloud Demo)", page_icon="☁️", layout="wide")
@@ -70,8 +70,15 @@ if uploaded_file is not None:
         prompt_template = ChatPromptTemplate.from_template(
             "You are ZETA, an elite intelligence assistant. Answer based strictly on the context provided below.\n\nContext:\n{context}\n\nQuestion: {input}"
         )
-        doc_chain = create_stuff_documents_chain(llm, prompt_template)
-        qa_chain = create_retrieval_chain(retriever, doc_chain)
+        def format_docs(docs):
+            return "\n\n".join(doc.page_content for doc in docs)
+
+        qa_chain = (
+            {"context": retriever | format_docs, "input": RunnablePassthrough()}
+            | prompt_template
+            | llm
+            | StrOutputParser()
+        )
         
         st.markdown("### Cloud Chat Interface")
         
@@ -89,8 +96,7 @@ if uploaded_file is not None:
 
             with st.chat_message("assistant"):
                 with st.spinner("Groq LPU thinking..."):
-                    response = qa_chain.invoke({"input": prompt})
-                    result = response["answer"]
+                    result = qa_chain.invoke(prompt)
                     st.markdown(result)
             st.session_state.messages.append({"role": "assistant", "content": result})
 else:
