@@ -12,6 +12,15 @@ When pitching this to investors, enterprise clients, or displaying it on your Gi
 2. **Hospitals:** Upload patient records to extract trends without violating HIPAA compliance.
 3. **Internal VC Diligence:** Analyze startup pitch decks privately before making investment decisions.
 
+## 👁️ Live Demo vs. Sovereign Architecture
+To ensure absolute data privacy, the core of this repository (`app.py`) is designed as a **Sovereign Architecture**. It runs strictly offline using a local Llama 3 model. 
+
+However, to allow recruiters and GitHub visitors to test the UI/UX instantly, I have deployed a **Cloud Demo Version** using the blazing-fast Groq LPU API. 
+
+👉 **[Try the Live Cloud Demo Here](https://your-streamlit-app-url.streamlit.app/)** 
+
+*(Note: The live demo is a functional replica, but for true offline security, clone this repo and run the Sovereign `app.py` locally).*
+
 ## 🛠️ The Tech Stack (ZETA Powerhouse)
 * **Frontend:** `Streamlit` (Provides the sleek, dark-mode chat UI)
 * **Brain:** `Ollama` running `llama3` (Executes the logic offline)
