@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # High-Performance Analytical Data Ingestion Layer
+  duckdb_node:
+    image: python:3.11-slim
+    container_name: local_analytics_duckdb
+    volumes:
+      - ./data/analytics:/workspace
+    command: tail -f /dev/null
+    restart: always
+
+  # Advanced GraphRAG Infrastructure Core
+  graph_knowledge_base:
+    image: neo4j:5.18-community
+    container_name: local_graphrag_neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/sovereign_password_2026
+      - NEO4J_PLUGINS=["apoc"]
+    volumes:
+      - ./data/graph:/data
+    restart: always
+
+  # High-Throughput Real-Time Stream Broker
+  event_router:
+    image: nats:2.10-alpine
+    container_name: local_event_nats
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+    command: ["-js"]
+    restart: always
+
+  # Real-Time Operational Performance Guardrails & Observability
+  agent_observability:
+    image: arize-phoenix:latest
+    container_name: local_trace_phoenix
+    ports:
+      - "6006:6006"
+    volumes:
+      - ./data/phoenix:/data
+    restart: always
+
+  # High-Speed Distributed System Memory Caching Engine
+  performance_cache:
+    image: dragonflydb/dragonfly:latest
+    container_name: local_cache_dragonfly
+    ports:
+      - "6379:6379"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    restart: always

@@ -1,0 +1,197 @@
+[
+  {
+    "farm_id": "RAN001",
+    "farm_name": "Kanke Valley Farm",
+    "top_3_crops": [
+      {
+        "crop": "Maize",
+        "confidence": 0.81,
+        "expected_yield": 21.2,
+        "expected_income": 39220
+      },
+      {
+        "crop": "Arhar",
+        "confidence": 0.75,
+        "expected_yield": 13.8,
+        "expected_income": 89700
+      },
+      {
+        "crop": "Paddy",
+        "confidence": 0.69,
+        "expected_yield": 22.1,
+        "expected_income": 47515
+      }
+    ],
+    "explanation": {
+      "primary_factors": [
+        "Soil pH: 5.9 (Acidic)",
+        "Rainfall: 89.6mm (Limited)",
+        "Nitrogen: 253.2 kg/ha (High)",
+        "Irrigation: Limited"
+      ],
+      "counterfactual": "If soil pH was improved to 6.5, expected yield could increase by 15-20%",
+      "recommendations": [
+        "Apply lime to reduce soil acidity",
+        "Consider drip irrigation for water efficiency",
+        "Apply organic matter to improve soil health"
+      ]
+    },
+    "prediction_date": "2025-09-26T00:00:00"
+  },
+  {
+    "farm_id": "RAN002",
+    "farm_name": "Ratu Plateau Farm",
+    "top_3_crops": [
+      {
+        "crop": "Maize",
+        "confidence": 0.81,
+        "expected_yield": 21.2,
+        "expected_income": 39220
+      },
+      {
+        "crop": "Arhar",
+        "confidence": 0.75,
+        "expected_yield": 13.8,
+        "expected_income": 89700
+      },
+      {
+        "crop": "Paddy",
+        "confidence": 0.69,
+        "expected_yield": 22.1,
+        "expected_income": 47515
+      }
+    ],
+    "explanation": {
+      "primary_factors": [
+        "Soil pH: 6.2 (Neutral)",
+        "Rainfall: 109.3mm (Adequate)",
+        "Nitrogen: 263.2 kg/ha (High)",
+        "Irrigation: Limited"
+      ],
+      "counterfactual": "If soil pH was improved to 6.5, expected yield could increase by 15-20%",
+      "recommendations": [
+        "Maintain current pH levels",
+        "Consider drip irrigation for water efficiency",
+        "Apply organic matter to improve soil health"
+      ]
+    },
+    "prediction_date": "2025-09-26T00:00:00"
+  },
+  {
+    "farm_id": "RAN003",
+    "farm_name": "Silli River Farm",
+    "top_3_crops": [
+      {
+        "crop": "Paddy",
+        "confidence": 0.85,
+        "expected_yield": 26.5,
+        "expected_income": 56975
+      },
+      {
+        "crop": "Maize",
+        "confidence": 0.79,
+        "expected_yield": 20.8,
+        "expected_income": 38480
+      },
+      {
+        "crop": "Vegetables",
+        "confidence": 0.73,
+        "expected_yield": 145.0,
+        "expected_income": 217500
+      }
+    ],
+    "explanation": {
+      "primary_factors": [
+        "Soil pH: 5.5 (Acidic)",
+        "Rainfall: 132.4mm (Adequate)",
+        "Nitrogen: 225.6 kg/ha (Medium)",
+        "Irrigation: Moderate"
+      ],
+      "counterfactual": "If soil pH was improved to 6.5, expected yield could increase by 15-20%",
+      "recommendations": [
+        "Apply lime to reduce soil acidity",
+        "Consider drip irrigation for water efficiency",
+        "Apply organic matter to improve soil health"
+      ]
+    },
+    "prediction_date": "2025-09-26T00:00:00"
+  },
+  {
+    "farm_id": "RAN004",
+    "farm_name": "Ormanjhi Tech Farm",
+    "top_3_crops": [
+      {
+        "crop": "Maize",
+        "confidence": 0.68,
+        "expected_yield": 16.2,
+        "expected_income": 29970
+      },
+      {
+        "crop": "Niger",
+        "confidence": 0.62,
+        "expected_yield": 8.5,
+        "expected_income": 17000
+      },
+      {
+        "crop": "Vegetables",
+        "confidence": 0.58,
+        "expected_yield": 98.0,
+        "expected_income": 147000
+      }
+    ],
+    "explanation": {
+      "primary_factors": [
+        "Soil pH: 5.1 (Acidic)",
+        "Rainfall: 139.7mm (Adequate)",
+        "Nitrogen: 276.6 kg/ha (High)",
+        "Irrigation: Moderate"
+      ],
+      "counterfactual": "If soil pH was improved to 6.5, expected yield could increase by 15-20%",
+      "recommendations": [
+        "Apply lime to reduce soil acidity",
+        "Consider drip irrigation for water efficiency",
+        "Apply organic matter to improve soil health"
+      ]
+    },
+    "prediction_date": "2025-09-26T00:00:00"
+  },
+  {
+    "farm_id": "RAN005",
+    "farm_name": "Bundu Hills Farm",
+    "top_3_crops": [
+      {
+        "crop": "Paddy",
+        "confidence": 0.85,
+        "expected_yield": 26.5,
+        "expected_income": 56975
+      },
+      {
+        "crop": "Maize",
+        "confidence": 0.79,
+        "expected_yield": 20.8,
+        "expected_income": 38480
+      },
+      {
+        "crop": "Vegetables",
+        "confidence": 0.73,
+        "expected_yield": 145.0,
+        "expected_income": 217500
+      }
+    ],
+    "explanation": {
+      "primary_factors": [
+        "Soil pH: 6.0 (Neutral)",
+        "Rainfall: 162.6mm (Adequate)",
+        "Nitrogen: 211.2 kg/ha (Medium)",
+        "Irrigation: Good"
+      ],
+      "counterfactual": "If soil pH was improved to 6.5, expected yield could increase by 15-20%",
+      "recommendations": [
+        "Maintain current pH levels",
+        "Optimize current irrigation",
+        "Apply organic matter to improve soil health"
+      ]
+    },
+    "prediction_date": "2025-09-26T00:00:00"
+  }
+]

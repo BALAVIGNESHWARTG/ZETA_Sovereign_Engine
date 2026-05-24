@@ -1,0 +1,5 @@
+{
+  "name": "AgriTwin AI",
+  "description": "Blockchain-Based Supply Chain Transparency for Agricultural Produce. A digital twin for every farm.",
+  "requestFramePermissions": ["microphone", "geolocation"]
+}

@@ -1,0 +1,6 @@
+crop,current_price,forecast_3m,forecast_6m,unit,trend
+Paddy,2150,2280,2420,INR/quintal,Increasing
+Maize,1850,1920,2050,INR/quintal,Stable
+Wheat,2350,2480,2580,INR/quintal,Increasing
+Arhar,6500,6800,7200,INR/quintal,Increasing
+Vegetables,1500,1650,1800,INR/quintal,Seasonal

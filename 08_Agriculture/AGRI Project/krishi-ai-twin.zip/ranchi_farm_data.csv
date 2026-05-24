@@ -1,0 +1,6 @@
+farm_id,farm_name,latitude,longitude,area_hectares,soil_type,block,ph,nitrogen_kg_ha,phosphorus_kg_ha,potassium_kg_ha,organic_matter_percent,rainfall_30d_mm,avg_temp_30d_celsius,humidity_30d_percent,ndvi_current,ndvi_30d_ago,last_season_crop,last_yield_qha,irrigation_access,last_updated
+RAN001,Kanke Valley Farm,23.2599,85.2026,2.5,Alfisols,Kanke,5.9,253.2,33.0,132.5,0.61,89.6,33.2,77.0,0.527,0.475,Paddy,25.8,Limited,2025-09-26T00:00:00
+RAN002,Ratu Plateau Farm,23.1895,85.1563,1.8,Inceptisols,Ratu,6.2,263.2,21.4,134.5,0.63,109.3,31.1,73.6,0.423,0.312,Paddy,19.1,Limited,2025-09-26T00:00:00
+RAN003,Silli River Farm,23.0847,85.4329,3.2,Alfisols,Silli,5.5,225.6,38.6,136.0,0.86,132.4,28.3,77.2,0.393,0.336,Paddy,25.6,Moderate,2025-09-26T00:00:00
+RAN004,Ormanjhi Tech Farm,23.1642,85.0839,4.1,Entisols,Ormanjhi,5.1,276.6,39.3,144.4,0.57,139.7,30.6,67.4,0.474,0.421,Maize,21.4,Moderate,2025-09-26T00:00:00
+RAN005,Bundu Hills Farm,23.1569,85.5894,1.5,Alfisols,Bundu,6.0,211.2,30.6,163.7,0.63,162.6,32.7,83.8,0.574,0.464,Vegetables,175.3,Good,2025-09-26T00:00:00

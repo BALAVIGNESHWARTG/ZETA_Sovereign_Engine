@@ -1,0 +1,174 @@
+{
+  "supercharged_vision": {
+    "tagline": "A hyper-local, explainable, offline-capable AI Digital Twin for every farm",
+    "core_capabilities": [
+      "Crop recommendations with 95%+ accuracy",
+      "Yield and profit forecasting with seasonal adjustments",
+      "Parametric insurance triggers with satellite verification",
+      "Carbon-credit-ready proof generation",
+      "Multilingual voice-first advice system",
+      "Verifiable via satellite + IoT + blockchain integration"
+    ]
+  },
+  "legendary_upgrades": {
+    "farm_digital_twin": {
+      "description": "Hyper-Local Agent for per-field precision",
+      "components": {
+        "data_sources": [
+          "SoilGrids",
+          "Bhuvan satellite",
+          "NDVI indices",
+          "farmer IoT photos"
+        ],
+        "on_device_model": "Lightweight edge inference <10MB footprint",
+        "live_predictions": "Real-time crop health and yield forecasting"
+      }
+    },
+    "explainable_recommender": {
+      "description": "SHAP + Counterfactual explanations for actionable insights",
+      "features": {
+        "recommendation_format": "Switch to maize would increase expected yield by 18%",
+        "explanation_methods": [
+          "SHAP feature importance",
+          "LIME local explanations",
+          "Counterfactual scenarios"
+        ],
+        "reasoning": "Because rainfall forecast + pH + seed variety X match optimal conditions"
+      }
+    },
+    "climate_proof_selector": {
+      "description": "5-year climate projection optimized variety selection",
+      "capabilities": {
+        "genotype_selection": "Climate-adaptive seed variety recommendation",
+        "climate_modeling": "Long-term weather pattern analysis",
+        "resilience_scoring": "Drought/flood resistance ratings"
+      }
+    },
+    "parametric_insurance": {
+      "description": "Satellite-verified automated payout system",
+      "mechanism": {
+        "triggers": [
+          "NDVI anomaly detection",
+          "Rainfall threshold breaches",
+          "Temperature extremes"
+        ],
+        "smart_contracts": "Pre-approved automatic payouts",
+        "verification": "Satellite imagery + ground truth validation"
+      }
+    },
+    "carbon_credits_pipeline": {
+      "description": "Verifiable carbon sequestration measurement and trading",
+      "process": {
+        "measurement": [
+          "Cover cropping analysis",
+          "Agroforestry monitoring",
+          "Soil carbon assessment"
+        ],
+        "verification": "Off-chain proofs + on-chain hash storage",
+        "trading": "Automated credit minting and marketplace integration"
+      }
+    },
+    "on_device_llm": {
+      "description": "Quantized multilingual voice assistant",
+      "specifications": {
+        "models": [
+          "Quantized Gemini",
+          "Llama variants",
+          "Regional language models"
+        ],
+        "languages": [
+          "Hindi",
+          "Punjabi",
+          "Regional dialects"
+        ],
+        "offline_capability": "Complete functionality without internet",
+        "cloud_integration": "Deep reasoning when connected"
+      }
+    },
+    "market_integration": {
+      "description": "Dynamic crop planning with buyer connections",
+      "features": {
+        "price_forecasting": "Market trend analysis and prediction",
+        "buyer_matching": "Local buyer connection with escrow",
+        "supply_chain": "End-to-end traceability"
+      }
+    },
+    "satellite_causality": {
+      "description": "Visual evidence for recommendation justification",
+      "analysis": {
+        "change_detection": "Before/after satellite imagery comparison",
+        "ndvi_correlation": "Vegetation health trend analysis",
+        "attribution": "Causal link between practices and outcomes"
+      }
+    },
+    "federated_learning": {
+      "description": "Privacy-preserving collaborative model improvement",
+      "privacy_features": {
+        "local_data": "Farmer data never leaves the device",
+        "secure_aggregation": "Encrypted model updates only",
+        "ownership": "Farmers control and monetize their data"
+      }
+    }
+  },
+  "tech_stack": {
+    "data_sources": {
+      "satellite": "SoilGrids, Bhuvan, Sentinel-2 via Earth Engine",
+      "weather": "OpenWeatherMap, Meteostat",
+      "market": "Agmarknet, local market feeds",
+      "farmer_input": "Photos, historical crop data, IoT sensors"
+    },
+    "models": {
+      "crop_selection": "XGBoost/LightGBM ensemble + neural time-series",
+      "plant_health": "U-Net/MobileNetV3 for disease detection",
+      "explanation": "SHAP + Counterfactual + LLM summarizer",
+      "on_device": "TensorFlow Lite/ONNX with INT8 quantization"
+    },
+    "infrastructure": {
+      "mvp": "Colab + Gradio prototype",
+      "production": "GCP: Earth Engine, Vertex AI, Cloud Functions, Firebase",
+      "blockchain": "Polygon/Ethereum L2 for certification"
+    },
+    "user_experience": {
+      "mobile": "Flutter app with voice chat",
+      "fallback": "IVR system for low-literacy farmers",
+      "offline": "TFLite inference + local storage",
+      "security": "Federated learning + data monetization opt-in"
+    }
+  },
+  "mvp_scope_36_hours": {
+    "must_have_day_1": [
+      "Digital Twin Builder - GPS + soil input + photo analysis",
+      "Top 3 crop recommendations with confidence scores",
+      "Expected yield and income calculations",
+      "SHAP-backed explanations in local language",
+      "Voice TTS output for accessibility",
+      "Gradio demo with satellite correlation"
+    ],
+    "stretch_day_2": [
+      "Satellite anomaly detection + mock insurance payout",
+      "Disease detection from phone photos",
+      "Treatment recommendations with safety disclaimers",
+      "Mock buyer matching and settlement preview"
+    ]
+  },
+  "execution_timeline": {
+    "hours_0_1": "Setup repositories, install libraries (xgboost, shap, gradio)",
+    "hours_1_3": "Build dataset (government soil + synthetic) + ETL pipeline",
+    "hours_3_5": "Train XGBoost + implement SHAP wrapper + counterfactual functions",
+    "hours_5_7": "Build Gradio UI with input forms, prediction tables, NDVI visualization",
+    "hours_7_8": "Add multilingual LLM integration for explanation conversion",
+    "hours_8_10": "Polish, package, prepare demo script and presentation"
+  },
+  "novel_claims": [
+    "Counterfactual + SHAP bilingual explanation pipeline for farmer-friendly actionables",
+    "Parametric payout orchestration with composite satellite NDVI + soil + market triggers",
+    "Field Digital Twin compression method for <10MB on-device models",
+    "Multilingual voice-first explainable AI for agricultural decision making"
+  ],
+  "impact_metrics": {
+    "accuracy": "95%+ crop recommendation confidence",
+    "performance": "Prediction + explanation under 3 seconds",
+    "coverage": "Offline inference capability for remote areas",
+    "impact": "15-25% yield increase, 20-40% income uplift, 30% chemical reduction"
+  }
+}

@@ -1,0 +1,91 @@
+# Z.E.T.A. Master Gitignore
+
+# 1. Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# 2. Node & JS Frameworks
+node_modules/
+dist/
+.next/
+out/
+build/
+.nuxt/
+coverage/
+
+# 3. ZETA Core AI Ignored Directories
+# NEVER push massive ML weights or Vector Databases to GitHub!
+.ollama/
+models/
+weights/
+*.gguf
+*.pt
+*.pth
+*.onnx
+*.safetensors
+faiss_index/
+chroma_db/
+qdrant_storage/
+pgdata/
+neo4j_data/
+hf_cache/
+uv_cache/
+rust_cache/
+
+# 4. OS and IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 5. Secrets and Keys
+# NEVER commit API keys
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+secrets.json
+credentials.json
+
+# 6. Legacy Editor & VSCode Caches
+.antigravity/
+**/.antigravity/
+**/node_modules/
+**/venv/
+**/.venv/
+
+# 7. CONFIDENTIAL STARTUP DOCS & LEGACY DATA
+11_ZETA_Startup_Docs/

@@ -1,0 +1,183 @@
+{
+  "district_overview": {
+    "name": "Ranchi District, Jharkhand",
+    "coordinates": {
+      "latitude": 23.22,
+      "longitude": 85.2
+    },
+    "elevation": 2136,
+    "geographical_area": 5231,
+    "climate": "Humid subtropical",
+    "annual_rainfall": 1430,
+    "population": {
+      "total": 2914253,
+      "density": 557,
+      "literacy": 87.68
+    },
+    "administrative": {
+      "blocks": 20,
+      "panchayats": 319,
+      "villages": 1311
+    }
+  },
+  "agricultural_characteristics": {
+    "agro_climatic_zone": "Eastern Plateau Zone (Zone V)",
+    "farming_system": "Predominantly mono-cropping (paddy-based)",
+    "irrigation": {
+      "total_potential": 106898,
+      "utilized": 19051,
+      "balance_potential": 87847,
+      "dependency": "86% rainfed agriculture"
+    },
+    "soil_profile": {
+      "dominant_types": [
+        "Alfisols (71%)",
+        "Inceptisols (17.2%)",
+        "Entisols (9.6%)"
+      ],
+      "characteristics": "Deep loamy to clayey red and yellow soils",
+      "ph_range": "4.5-7.5 (acidic to alkaline variation)",
+      "fertility": "Low to medium organic matter content"
+    },
+    "cropping_pattern": {
+      "kharif_crops": {
+        "paddy": {
+          "area": 252923,
+          "productivity": 22,
+          "production": 261845
+        },
+        "maize": {
+          "area": 6199,
+          "productivity": 18,
+          "production": 11158
+        },
+        "pulses": {
+          "area": 38914,
+          "productivity": 11,
+          "production": 42806
+        },
+        "niger": {
+          "area": 3500,
+          "productivity": 8,
+          "production": 2800
+        },
+        "vegetables": {
+          "area": 6022,
+          "productivity": 150,
+          "production": 9033
+        }
+      },
+      "rabi_crops": {
+        "wheat": {
+          "area": 4953,
+          "productivity": 17,
+          "production": 8421
+        },
+        "pulses": {
+          "area": 5857,
+          "productivity": 13,
+          "production": 7614
+        },
+        "vegetables": {
+          "area": 16626,
+          "productivity": 120,
+          "production": 19951
+        },
+        "mustard": {
+          "area": 2800,
+          "productivity": 12,
+          "production": 3360
+        }
+      },
+      "summer_crops": {
+        "vegetables": {
+          "area": 5164,
+          "productivity": 100,
+          "production": 5164
+        }
+      }
+    }
+  },
+  "climate_data_2025": {
+    "temperature_ranges": {
+      "summer": {
+        "min": 20.6,
+        "max": 41.2
+      },
+      "winter": {
+        "min": 5.3,
+        "max": 20.9
+      }
+    },
+    "monsoon_forecast": {
+      "expected_rainfall": 1520,
+      "distribution": "Above normal in June-September",
+      "risk_factors": [
+        "Intra-seasonal variability",
+        "Erratic patterns"
+      ]
+    },
+    "challenges": [
+      "Water stress",
+      "Soil erosion",
+      "Climate vulnerability"
+    ]
+  },
+  "government_initiatives": {
+    "digital_programs": [
+      "Birsa Kisan Yojana - Unique farmer ID system",
+      "Digital Agriculture Mission - Farmer ID for 11 crore farmers by 2026-27",
+      "Kisan-eMitra AI chatbot - 82 lakh queries resolved",
+      "Digital Panchayat initiative - All 4,343 GPs digitized"
+    ],
+    "schemes": [
+      "Mukhyamantri Krishi Aashirwad Yojana",
+      "Kisan Samriddhi Yojana - Solar irrigation subsidy",
+      "ARYA (Attracting Youth in Agriculture)",
+      "PM-KISAN - 9.51 crore beneficiaries"
+    ]
+  },
+  "innovation_opportunities": {
+    "high_priority": [
+      "Precision irrigation for 87,847 ha untapped potential",
+      "Soil health improvement for acidic soils",
+      "Crop diversification beyond paddy monoculture",
+      "Climate resilience for erratic rainfall patterns"
+    ],
+    "technology_gaps": [
+      "Limited mechanization in hilly terrain",
+      "Poor storage and market infrastructure",
+      "Lack of real-time advisory services",
+      "Minimal use of satellite data for farming"
+    ]
+  },
+  "sample_villages": [
+    {
+      "name": "Kanke Block Villages",
+      "characteristics": "Mixed farming with vegetable cultivation",
+      "farmers": "50 farmers (33 marginal, 17 small)",
+      "innovation_level": "Medium - some drip irrigation adoption"
+    },
+    {
+      "name": "Ratu Block Villages",
+      "characteristics": "Paddy-focused with limited diversification",
+      "irrigation_access": "Limited - mostly rainfed",
+      "innovation_level": "Low - traditional practices dominant"
+    },
+    {
+      "name": "Silli Block Villages",
+      "characteristics": "River proximity enables better irrigation",
+      "crops": "Paddy, wheat, vegetables",
+      "innovation_level": "Medium - some modern practices"
+    }
+  ],
+  "success_stories": [
+    {
+      "farmer": "Mahto - Sundarban Krishi Vatika",
+      "innovation": "AI-powered automated irrigation system",
+      "area": "20 acres across 3 farms",
+      "technology": "Soil moisture sensors + mobile app control",
+      "results": "Water savings, increased productivity"
+    }
+  ]
+}

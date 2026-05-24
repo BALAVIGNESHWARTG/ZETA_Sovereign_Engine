@@ -1,0 +1,10 @@
+Category,Component,Technologies,Details
+Security Privacy,Federated Learning,4,"Secure aggregation protocols, Differential privacy mechanisms, Local model training..."
+Security Privacy,Data Protection,4,"End-to-end encryption, Zero-knowledge proofs, GDPR compliance..."
+Security Privacy,Blockchain Security,4,"Multi-signature wallets, Smart contract auditing, Reentrancy protection..."
+Performance Optimization,Edge Computing,4,"Model quantization to 8-bit, Graph optimization, Memory pool allocation..."
+Performance Optimization,Caching Strategies,4,"Redis for hot data, CDN for satellite imagery, Local storage for models..."
+Performance Optimization,Scalability,4,"Horizontal pod autoscaling, Load balancing, Database sharding..."
+Testing Validation,Model Testing,4,"Cross-validation with temporal splits, A/B testing framework, Bias detection and mitigation..."
+Testing Validation,System Testing,4,"Integration tests, Performance benchmarking, Security penetration testing..."
+Testing Validation,User Testing,4,"Usability testing with farmers, Accessibility compliance, Multi-language validation..."
