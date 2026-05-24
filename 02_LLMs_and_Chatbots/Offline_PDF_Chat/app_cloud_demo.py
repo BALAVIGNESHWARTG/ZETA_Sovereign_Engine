@@ -8,7 +8,10 @@ from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings 
 # Using Groq for Blazing Fast Free Cloud Inference
 from langchain_groq import ChatGroq
-from langchain_classic.chains import RetrievalQA
+# Using Modern LCEL Architecture to avoid Cloud Dependency Conflicts
+from langchain.chains import create_retrieval_chain
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain_core.prompts import ChatPromptTemplate
 
 st.set_page_config(page_title="ZETA PDF Intel (Cloud Demo)", page_icon="☁️", layout="wide")
 
@@ -61,10 +64,10 @@ if uploaded_file is not None:
         # Initialize Free Groq Model
         llm = ChatGroq(temperature=0, model_name="llama3-8b-8192", groq_api_key=user_api_key)
         
-        qa_chain = RetrievalQA.from_chain_type(
-            llm,
-            retriever=vectorstore.as_retriever(search_kwargs={"k": 3})
-        )
+        # Modern LCEL Chain Architecture
+        prompt_template = ChatPromptTemplate.from_template("Answer based strictly on the context provided below.\n\nContext:\n{context}\n\nQuestion: {input}")
+        doc_chain = create_stuff_documents_chain(llm, prompt_template)
+        qa_chain = create_retrieval_chain(vectorstore.as_retriever(search_kwargs={"k": 3}), doc_chain)
         
         st.markdown("### Cloud Chat Interface")
         
@@ -82,8 +85,8 @@ if uploaded_file is not None:
 
             with st.chat_message("assistant"):
                 with st.spinner("Groq LPU thinking..."):
-                    response = qa_chain.invoke({"query": prompt})
-                    result = response["result"]
+                    response = qa_chain.invoke({"input": prompt})
+                    result = response["answer"]
                     st.markdown(result)
             st.session_state.messages.append({"role": "assistant", "content": result})
 else:
