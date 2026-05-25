@@ -3,7 +3,10 @@ import { ChatGroq } from "@langchain/groq";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { StructuredOutputParser } from "@langchain/core/output_parsers";
 import { z } from "zod";
-import pdfParse from 'pdf-parse';
+// pdf-parse is CommonJS only — must be required at runtime, not statically imported
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const pdfParse = require('pdf-parse') as (buffer: Buffer) => Promise<{ text: string }>;
+
 
 // Setup Zod schema for structured output
 const parser = StructuredOutputParser.fromZodSchema(
