@@ -4,17 +4,12 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { StructuredOutputParser } from "@langchain/core/output_parsers";
 import { z } from "zod";
 
-// pdf-parse v3 exports PDFParse class — not a default function
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const { PDFParse } = require('pdf-parse');
-
 // ─── Zod Schema: 30+ Dimension ATS Evaluation ───────────────────────────────
 const parser = StructuredOutputParser.fromZodSchema(
   z.object({
     overallScore: z.number().min(0).max(100).describe("Final ATS score out of 100"),
     grade: z.enum(["S", "A", "B", "C", "D", "F"]).describe("Letter grade (S=Elite, A=Strong, B=Good, C=Average, D=Weak, F=Fail)"),
 
-    // ── Section 1: Contact & Identity ──
     contactScore: z.number().min(0).max(100).describe("Score for contact section completeness"),
     hasPhone: z.boolean().describe("Resume has a phone number"),
     hasEmail: z.boolean().describe("Resume has a professional email"),
@@ -22,85 +17,86 @@ const parser = StructuredOutputParser.fromZodSchema(
     hasGitHub: z.boolean().describe("Resume has a GitHub URL"),
     hasPortfolio: z.boolean().describe("Resume has a portfolio or website URL"),
 
-    // ── Section 2: Work Experience ──
     experienceScore: z.number().min(0).max(100).describe("Score for work experience quality"),
     yearsOfExperience: z.number().describe("Estimated total years of work experience"),
-    hasQuantifiedAchievements: z.boolean().describe("Uses numbers/percentages to quantify achievements (e.g. 'increased sales by 40%')"),
-    usesActionVerbs: z.boolean().describe("Begins bullet points with strong action verbs (Led, Built, Reduced, etc.)"),
+    hasQuantifiedAchievements: z.boolean().describe("Uses numbers/percentages to quantify achievements"),
+    usesActionVerbs: z.boolean().describe("Begins bullet points with strong action verbs"),
     experienceBulletQuality: z.enum(["excellent", "good", "fair", "poor"]).describe("Overall quality of experience bullet points"),
 
-    // ── Section 3: Skills & Keywords ──
     skillsScore: z.number().min(0).max(100).describe("Score for technical skills section"),
-    technicalSkills: z.array(z.string()).describe("List of all detected technical skills (languages, frameworks, tools, platforms)"),
+    technicalSkills: z.array(z.string()).describe("List of all detected technical skills"),
     softSkills: z.array(z.string()).describe("List of detected soft skills"),
     missingCriticalKeywords: z.array(z.string()).describe("Top 5 missing keywords critical for tech roles"),
-    keywordDensity: z.enum(["optimal", "too_sparse", "keyword_stuffed"]).describe("Assessment of keyword density throughout resume"),
+    keywordDensity: z.enum(["optimal", "too_sparse", "keyword_stuffed"]).describe("Keyword density assessment"),
 
-    // ── Section 4: Education ──
     educationScore: z.number().min(0).max(100).describe("Score for education section"),
-    highestDegree: z.string().describe("Highest academic degree detected (e.g. B.Tech, M.S., Ph.D, MBA)"),
-    hasRelevantCertifications: z.boolean().describe("Has relevant professional certifications (AWS, GCP, Azure, PMP, etc.)"),
+    highestDegree: z.string().describe("Highest academic degree detected"),
+    hasRelevantCertifications: z.boolean().describe("Has relevant professional certifications"),
 
-    // ── Section 5: ATS Parsing Mechanics ──
     atsParsingScore: z.number().min(0).max(100).describe("Score for ATS-friendliness of formatting"),
-    hasClearSections: z.boolean().describe("Resume has clearly labeled section headers (Experience, Skills, Education)"),
-    usesAtsCompatibleFormat: z.boolean().describe("Uses simple formatting without tables, columns, graphics, headers/footers (ATS-safe)"),
-    hasNoRenderingIssues: z.boolean().describe("No special characters or encoding issues that would break ATS parsing"),
+    hasClearSections: z.boolean().describe("Resume has clearly labeled section headers"),
+    usesAtsCompatibleFormat: z.boolean().describe("Uses simple ATS-safe formatting without tables or columns"),
+    hasNoRenderingIssues: z.boolean().describe("No special characters or encoding issues"),
     resumeLength: z.enum(["too_short", "ideal_1_page", "ideal_2_page", "too_long"]).describe("Resume length assessment"),
 
-    // ── Section 6: Impact & Differentiation ──
-    impactScore: z.number().min(0).max(100).describe("Score for how strongly the candidate differentiates themselves"),
+    impactScore: z.number().min(0).max(100).describe("Score for impact and differentiation"),
     hasProjectsSection: z.boolean().describe("Resume includes a projects section"),
     hasOpenSourceContributions: z.boolean().describe("Mentions open source contributions"),
     hasAwardsOrRecognition: z.boolean().describe("Mentions awards, hackathon wins, or recognition"),
 
-    // ── Section 7: Job Alignment (30+ Test Cases) ──
-    jobAlignmentScore: z.number().min(0).max(100).describe("How well the resume is positioned for general tech roles (SDE/Data/AI/DevOps)"),
-    targetRoleFit: z.enum(["Software Engineer", "Data Scientist", "DevOps/Cloud Engineer", "AI/ML Engineer", "Full Stack Developer", "Backend Developer", "Frontend Developer", "Unclear"]).describe("The tech role this resume is best suited for"),
-    seniorityFit: z.enum(["Intern", "Junior (0-2 yrs)", "Mid-Level (2-5 yrs)", "Senior (5-8 yrs)", "Staff/Principal (8+ yrs)"]).describe("Seniority level this resume targets"),
+    jobAlignmentScore: z.number().min(0).max(100).describe("How well positioned for general tech roles"),
+    targetRoleFit: z.enum(["Software Engineer", "Data Scientist", "DevOps/Cloud Engineer", "AI/ML Engineer", "Full Stack Developer", "Backend Developer", "Frontend Developer", "Unclear"]).describe("Best suited tech role"),
+    seniorityFit: z.enum(["Intern", "Junior (0-2 yrs)", "Mid-Level (2-5 yrs)", "Senior (5-8 yrs)", "Staff/Principal (8+ yrs)"]).describe("Seniority level"),
 
-    // ── Final Outputs ──
-    topStrengths: z.array(z.string()).min(3).describe("Top 3 things the candidate is doing RIGHT"),
-    criticalWeaknesses: z.array(z.string()).min(3).describe("Top 3 critical issues that will cause ATS rejection or recruiter bounce"),
-    priorityActions: z.array(z.string()).min(3).describe("Top 3 specific, actionable improvements to make IMMEDIATELY"),
-    verdict: z.string().describe("A single, blunt, professional 2-sentence verdict from an elite technical recruiter's perspective"),
+    topStrengths: z.array(z.string()).min(3).describe("Top 3 strengths"),
+    criticalWeaknesses: z.array(z.string()).min(3).describe("Top 3 critical weaknesses"),
+    priorityActions: z.array(z.string()).min(3).describe("Top 3 specific actionable improvements"),
+    verdict: z.string().describe("A blunt 2-sentence recruiter verdict"),
   })
 );
 
-// ─── PDF Text Extraction ─────────────────────────────────────────────────────
+// ─── PDF Text Extraction using pdfjs-dist ───────────────────────────────────
 async function extractTextFromPDF(buffer: Buffer): Promise<string> {
-  // Strategy 1: Use PDFParse class (pdf-parse v3 API)
-  try {
-    const pdfParser = new PDFParse();
-    const result = await pdfParser.lazyLoad(buffer);
-    if (result && result.text && result.text.trim().length > 30) {
-      return result.text.trim();
-    }
-  } catch (e1) {
-    console.warn("Strategy 1 (lazyLoad) failed:", e1);
+  // Dynamic import ensures this only runs on the server (Node.js), not the browser
+  const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs');
+
+  // Disable the worker — we're in Node.js, no separate thread needed
+  pdfjsLib.GlobalWorkerOptions.workerSrc = '';
+
+  const uint8Array = new Uint8Array(buffer);
+
+  const loadingTask = pdfjsLib.getDocument({
+    data: uint8Array,
+    useSystemFonts: true,
+    disableFontFace: true,
+  });
+
+  const pdfDoc = await loadingTask.promise;
+  const numPages = pdfDoc.numPages;
+
+  if (numPages === 0) {
+    throw new Error("PDF has 0 pages.");
   }
 
-  // Strategy 2: Try the parse method directly
-  try {
-    const pdfParser = new PDFParse();
-    const result = await new Promise<{ text: string }>((resolve, reject) => {
-      pdfParser.on("pdfParser_dataReady", (data: { Pages: Array<{ Texts: Array<{ R: Array<{ T: string }> }> }> }) => {
-        const text = data.Pages.map(page =>
-          page.Texts.map(t => decodeURIComponent(t.R.map((r) => r.T).join(''))).join(' ')
-        ).join('\n');
-        resolve({ text });
-      });
-      pdfParser.on("pdfParser_dataError", (err: Error) => reject(err));
-      pdfParser.parseBuffer(buffer);
-    });
-    if (result.text && result.text.trim().length > 30) {
-      return result.text.trim();
-    }
-  } catch (e2) {
-    console.warn("Strategy 2 (parseBuffer) failed:", e2);
+  const textParts: string[] = [];
+
+  for (let pageNum = 1; pageNum <= Math.min(numPages, 10); pageNum++) {
+    const page = await pdfDoc.getPage(pageNum);
+    const textContent = await page.getTextContent();
+    const pageText = textContent.items
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .map((item: any) => item.str || '')
+      .join(' ');
+    textParts.push(pageText);
   }
 
-  throw new Error("All PDF extraction strategies failed. The file may be scanned, password-protected, or image-only.");
+  const fullText = textParts.join('\n').trim();
+
+  if (fullText.length < 50) {
+    throw new Error(`Only ${fullText.length} characters extracted. The PDF appears to be image-only or scanned.`);
+  }
+
+  return fullText;
 }
 
 // ─── Main API Handler ────────────────────────────────────────────────────────
@@ -113,11 +109,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'No file uploaded.' }, { status: 400 });
     }
 
-    // Convert File → Buffer
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Extract text with multi-strategy fallback
     let resumeText: string;
     try {
       resumeText = await extractTextFromPDF(buffer);
@@ -125,23 +119,15 @@ export async function POST(request: Request) {
       const msg = extractErr instanceof Error ? extractErr.message : 'Unknown extraction error';
       console.error("PDF Extraction Error:", msg);
       return NextResponse.json({
-        error: `PDF text extraction failed: ${msg}. Please ensure the PDF is text-based (not a scanned image). Try exporting from Word/Google Docs as PDF.`
+        error: `PDF extraction failed: ${msg}. Make sure the PDF is text-based (exported from Word, Google Docs, or Overleaf — not a scanned image or photo).`
       }, { status: 422 });
     }
 
-    if (resumeText.trim().length < 100) {
-      return NextResponse.json({
-        error: `Extracted only ${resumeText.trim().length} characters — too little to analyze. The PDF may be image-based. Try a text-based PDF exported directly from Word, Google Docs, or a LaTeX editor.`
-      }, { status: 422 });
-    }
-
-    // Groq API Key check
     const groqApiKey = process.env.GROQ_API_KEY;
     if (!groqApiKey) {
-      return NextResponse.json({ error: 'Server misconfiguration: GROQ_API_KEY is missing.' }, { status: 500 });
+      return NextResponse.json({ error: 'Server misconfiguration: GROQ_API_KEY missing.' }, { status: 500 });
     }
 
-    // Initialize Groq LLM
     const model = new ChatGroq({
       apiKey: groqApiKey,
       modelName: "llama-3.3-70b-versatile",
@@ -149,13 +135,10 @@ export async function POST(request: Request) {
       maxTokens: 4096,
     });
 
-    // Prompt with 30+ dimension instructions
     const prompt = ChatPromptTemplate.fromMessages([
-      ["system", `You are ZETA-ATS, the world's most advanced Applicant Tracking System combined with an elite Senior Technical Recruiter with 15 years experience at FAANG companies.
+      ["system", `You are ZETA-ATS, an elite Applicant Tracking System combined with a Senior Technical Recruiter with 15 years at FAANG companies.
 
-You rigorously evaluate resumes across 30+ professional dimensions covering contact completeness, work experience quality, skills and keyword alignment, education, ATS parsing mechanics, impact differentiation, and job-role alignment.
-
-Your scoring is HARSH. A score of 85+ is exceptional. Most resumes score 40-65. Be brutally honest.
+You rigorously evaluate resumes across 30+ professional dimensions.
 
 SCORING RUBRIC:
 - 90-100 (S Grade): FAANG-ready, elite resume
@@ -165,28 +148,26 @@ SCORING RUBRIC:
 - 30-44 (D Grade): Weak, high rejection probability
 - 0-29 (F Grade): Will be filtered immediately
 
-CRITICAL INSTRUCTIONS:
-- Detect technical skills precisely: languages (Python, Java, JS), frameworks (React, Django, FastAPI), tools (Docker, Kubernetes, Git), cloud (AWS, GCP, Azure), databases (PostgreSQL, MongoDB, Redis)
-- Check for quantified achievements (%, $, x improvement, user counts)
-- Assess ATS compatibility: no tables, columns, headers/footers, images (these break ATS parsers)
-- Identify target role from the skills and experience pattern
-- Estimate seniority from years of experience and scope of work
-- Your priorityActions must be SPECIFIC (e.g. "Add a Projects section with 3 GitHub links" NOT "Improve projects")
-
-OUTPUT: Valid JSON only. No markdown. No explanations outside the JSON.
+RULES:
+- Detect technical skills precisely: languages (Python, Java, JS), frameworks (React, Django), tools (Docker, Git), cloud (AWS, GCP, Azure), databases (PostgreSQL, Redis)
+- Check for quantified achievements (%, $, multipliers)
+- Assess ATS compatibility (no tables, columns, images)
+- Identify target role from skills pattern
+- Estimate seniority from years and scope of work
+- priorityActions MUST be SPECIFIC (e.g. "Add 3 GitHub project links with tech stack" NOT "Improve projects")
+- OUTPUT: Valid JSON only. No markdown. No extra text.
 
 {format_instructions}`],
-      ["human", `Analyze this resume text comprehensively across all 30+ dimensions:\n\n---\n{resume_text}\n---`],
+      ["human", "Analyze this resume comprehensively:\n\n---\n{resume_text}\n---"],
     ]);
 
     const chain = prompt.pipe(model).pipe(parser);
 
     const result = await chain.invoke({
-      resume_text: resumeText.slice(0, 12000), // Limit to 12k chars to stay within token limits
+      resume_text: resumeText.slice(0, 12000),
       format_instructions: parser.getFormatInstructions(),
     });
 
-    // Attach extracted text length for debugging (not shown in UI)
     return NextResponse.json({
       ...result,
       _meta: { extractedChars: resumeText.length, fileName: file.name }
