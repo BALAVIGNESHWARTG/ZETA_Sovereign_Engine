@@ -55,48 +55,28 @@ const parser = StructuredOutputParser.fromZodSchema(
   })
 );
 
-// ─── PDF Text Extraction using pdfjs-dist ───────────────────────────────────
+// ─── PDF Text Extraction using pdf2json ─────────────────────────────────────────
 async function extractTextFromPDF(buffer: Buffer): Promise<string> {
-  // Dynamic import ensures this only runs on the server (Node.js), not the browser
-  const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs');
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const PDFParser = require('pdf2json');
+  
+  return new Promise((resolve, reject) => {
+    const pdfParser = new PDFParser(this, 1); // 1 = text mode
 
-  // Disable the worker — we're in Node.js, no separate thread needed
-  pdfjsLib.GlobalWorkerOptions.workerSrc = '';
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    pdfParser.on("pdfParser_dataError", (errData: any) => reject(new Error(errData.parserError)));
+    
+    pdfParser.on("pdfParser_dataReady", () => {
+      const fullText = pdfParser.getRawTextContent();
+      if (!fullText || fullText.trim().length < 50) {
+        reject(new Error(`Only ${fullText ? fullText.trim().length : 0} characters extracted. The PDF appears to be image-only or scanned.`));
+      } else {
+        resolve(fullText.trim());
+      }
+    });
 
-  const uint8Array = new Uint8Array(buffer);
-
-  const loadingTask = pdfjsLib.getDocument({
-    data: uint8Array,
-    useSystemFonts: true,
-    disableFontFace: true,
+    pdfParser.parseBuffer(buffer);
   });
-
-  const pdfDoc = await loadingTask.promise;
-  const numPages = pdfDoc.numPages;
-
-  if (numPages === 0) {
-    throw new Error("PDF has 0 pages.");
-  }
-
-  const textParts: string[] = [];
-
-  for (let pageNum = 1; pageNum <= Math.min(numPages, 10); pageNum++) {
-    const page = await pdfDoc.getPage(pageNum);
-    const textContent = await page.getTextContent();
-    const pageText = textContent.items
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .map((item: any) => item.str || '')
-      .join(' ');
-    textParts.push(pageText);
-  }
-
-  const fullText = textParts.join('\n').trim();
-
-  if (fullText.length < 50) {
-    throw new Error(`Only ${fullText.length} characters extracted. The PDF appears to be image-only or scanned.`);
-  }
-
-  return fullText;
 }
 
 // ─── Main API Handler ────────────────────────────────────────────────────────
@@ -130,7 +110,7 @@ export async function POST(request: Request) {
 
     const model = new ChatGroq({
       apiKey: groqApiKey,
-      modelName: "llama-3.3-70b-versatile",
+      model: "llama-3.3-70b-versatile",
       temperature: 0.05,
       maxTokens: 4096,
     });
