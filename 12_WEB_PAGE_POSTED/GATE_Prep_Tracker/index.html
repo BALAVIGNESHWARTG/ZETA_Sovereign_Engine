@@ -4,15 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GATE 2027 PREPARATION | ZETA RESEARCH</title>
+    <title>ZERO TO GATE DA | ZETA RESEARCH</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#06101A',
+                            800: '#0B1D2E', /* Main Logo Navy */
+                            700: '#142E45',
+                            600: '#1D405C',
+                            50: '#F0F4F8'
+                        },
+                        gold: {
+                            600: '#A67F2E',
+                            500: '#C59B3F', /* Main Logo Gold */
+                            400: '#D4AF60',
+                            100: '#FDF8ED'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f5f5f4;
+            background-color: #F8F9FA;
         }
 
         .chart-container {
@@ -31,11 +57,21 @@
             }
         }
 
+        /* Navy Theme Sidebar Styles */
         .nav-active {
-            background-color: #e7e5e4;
-            color: #0f172a;
+            background-color: #142E45;
+            color: #FFFFFF !important;
             font-weight: 600;
-            border-right: 4px solid #b45309;
+            border-right: 4px solid #C59B3F;
+        }
+
+        .nav-inactive {
+            color: #94A3B8;
+        }
+
+        .nav-inactive:hover {
+            background-color: #0F253A;
+            color: #F8FAFC;
         }
 
         .timeline-line::before {
@@ -45,13 +81,13 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background-color: #d6d3d1;
+            background-color: #CBD5E1;
         }
 
         .tab-active {
-            border-bottom: 2px solid #b45309;
-            color: #b45309;
-            font-weight: 600;
+            border-bottom: 2px solid #C59B3F;
+            color: #0B1D2E !important;
+            font-weight: 700;
         }
 
         .custom-scrollbar::-webkit-scrollbar {
@@ -59,11 +95,24 @@
         }
 
         .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f5f5f4;
+            background: #0B1D2E;
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background-color: #d6d3d1;
+            background-color: #142E45;
+            border-radius: 10px;
+        }
+
+        .main-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .main-scrollbar::-webkit-scrollbar-track {
+            background: #F8F9FA;
+        }
+
+        .main-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #CBD5E1;
             border-radius: 10px;
         }
 
@@ -82,71 +131,82 @@
             outline: none;
             text-decoration: none !important;
             color: #ffffff !important;
-            width: 200px;
-            height: 32px;
-            border-radius: 16px;
+            width: 100%;
+            height: 36px;
+            border-radius: 6px;
             background-color: #0A66C2;
-            font-family: "SF Pro Text", Helvetica, sans-serif;
+            font-family: "Inter", sans-serif;
+            font-weight: 600;
+            font-size: 14px;
             margin: 0 auto;
+            transition: background-color 0.2s;
+        }
+
+        .libutton:hover {
+            background-color: #004182;
         }
     </style>
 </head>
 
-<body class="text-stone-800 flex h-screen overflow-hidden">
+<body class="text-gray-800 flex h-screen overflow-hidden selection:bg-gold-500 selection:text-white">
 
     <nav id="sidebar"
-        class="bg-stone-100 w-64 md:w-72 flex-shrink-0 border-r border-stone-200 flex flex-col transition-transform duration-300 absolute md:relative z-30 h-full -translate-x-full md:translate-x-0 shadow-xl md:shadow-none">
-        <div class="p-5 md:p-6 border-b border-stone-200 relative bg-white">
+        class="bg-navy-800 w-64 md:w-72 flex-shrink-0 border-r border-navy-900 flex flex-col transition-transform duration-300 absolute md:relative z-30 h-full -translate-x-full md:translate-x-0 shadow-2xl md:shadow-none">
+
+        <div class="p-5 md:p-6 border-b border-navy-700 relative bg-navy-800 text-center">
             <button onclick="toggleSidebar()"
-                class="md:hidden absolute top-4 right-4 text-stone-500 text-xl">&times;</button>
-            <h1 class="text-xl md:text-2xl font-extrabold text-stone-900 leading-tight tracking-tight">GATE
-                2027<br><span class="text-sm md:text-base font-bold text-amber-700">DATA SCIENCE & AI</span></h1>
-            <p class="text-xs text-stone-500 mt-2 font-medium">Compiled & Written By</p>
-            <p class="text-sm font-bold text-stone-800 uppercase tracking-wide">Balavigneshwar T G</p>
-            <p class="text-xs font-bold text-stone-400 mt-1 tracking-widest">ZETA RESEARCH</p>
+                class="md:hidden absolute top-4 right-4 text-gray-400 text-2xl">&times;</button>
+            <h1 class="text-3xl font-extrabold text-white leading-tight tracking-tight">
+                0<span class="text-gold-500">G</span><br>
+                <span class="text-sm md:text-base font-bold text-gray-300 tracking-wider">ZERO TO GATE DA</span>
+            </h1>
+            <div class="mt-4 pt-4 border-t border-navy-700">
+                <p class="text-xs text-gray-400 font-medium">Architected By</p>
+                <p class="text-sm font-bold text-gold-500 uppercase tracking-wide">Balavigneshwar T G</p>
+            </div>
         </div>
 
         <div class="flex-1 overflow-y-auto py-4 custom-scrollbar">
             <ul class="space-y-1">
                 <li><button onclick="nav('home')" id="nav-home"
-                        class="w-full text-left px-6 py-3 text-sm text-stone-600 hover:bg-stone-200 transition nav-active">🏠
-                        1. Overview & Application</button></li>
+                        class="w-full text-left px-6 py-3 text-sm transition nav-active">🏛️ 1. Overview &
+                        Protocol</button></li>
                 <li><button onclick="nav('syllabus')" id="nav-syllabus"
-                        class="w-full text-left px-6 py-3 text-sm text-stone-600 hover:bg-stone-200 transition">📊 2.
-                        Syllabus Decoded</button></li>
+                        class="w-full text-left px-6 py-3 text-sm nav-inactive transition">📊 2. Syllabus
+                        Decoded</button></li>
                 <li><button onclick="nav('timeline')" id="nav-timeline"
-                        class="w-full text-left px-6 py-3 text-sm text-stone-600 hover:bg-stone-200 transition">⏳ 3. The
-                        8-Month Plan</button></li>
+                        class="w-full text-left px-6 py-3 text-sm nav-inactive transition">⏳ 3. The 8-Month
+                        Plan</button></li>
                 <li><button onclick="nav('resources')" id="nav-resources"
-                        class="w-full text-left px-6 py-3 text-sm text-stone-600 hover:bg-stone-200 transition">📚 4.
-                        Master Resources</button></li>
+                        class="w-full text-left px-6 py-3 text-sm nav-inactive transition">📚 4. Master
+                        Resources</button></li>
                 <li><button onclick="nav('strategy')" id="nav-strategy"
-                        class="w-full text-left px-6 py-3 text-sm text-stone-600 hover:bg-stone-200 transition">🧠 5.
-                        Exam Strategy & Mocks</button></li>
+                        class="w-full text-left px-6 py-3 text-sm nav-inactive transition">⚔️ 5. Exam & Mock
+                        Strategy</button></li>
                 <li><button onclick="nav('revision')" id="nav-revision"
-                        class="w-full text-left px-6 py-3 text-sm text-stone-600 hover:bg-stone-200 transition">🔄 6.
-                        Revision & Last 30 Days</button></li>
+                        class="w-full text-left px-6 py-3 text-sm nav-inactive transition">🔄 6. Revision
+                        Protocol</button></li>
                 <li><button onclick="nav('faqs')" id="nav-faqs"
-                        class="w-full text-left px-6 py-3 text-sm text-stone-600 hover:bg-stone-200 transition">💡 7.
-                        Mistakes & FAQs</button></li>
+                        class="w-full text-left px-6 py-3 text-sm nav-inactive transition">💡 7. Mistakes &
+                        FAQs</button></li>
                 <li><button onclick="nav('tools')" id="nav-tools"
-                        class="w-full text-left px-6 py-3 text-sm text-stone-600 hover:bg-stone-200 transition">🛠️ 8.
-                        Interactive Trackers</button></li>
+                        class="w-full text-left px-6 py-3 text-sm nav-inactive transition">✅ 8. Interactive
+                        Trackers</button></li>
                 <li><button onclick="nav('cutoffs')" id="nav-cutoffs"
-                        class="w-full text-left px-6 py-3 text-sm text-stone-600 hover:bg-stone-200 transition">🎯 IITM
+                        class="w-full text-left px-6 py-3 text-sm nav-inactive transition">🎯 IITM Target
                         Cutoffs</button></li>
                 <li><button onclick="nav('author')" id="nav-author"
-                        class="w-full text-left px-6 py-3 text-sm text-stone-600 hover:bg-stone-200 transition">👨‍💻
-                        About the Author</button></li>
+                        class="w-full text-left px-6 py-3 text-sm nav-inactive transition">👨‍💻 About the
+                        Author</button></li>
                 <li><button onclick="nav('assistant')" id="nav-assistant"
-                        class="w-full text-left px-6 py-3 text-sm text-stone-600 hover:bg-stone-200 transition">🤖 AI
-                        Study Assistant</button></li>
+                        class="w-full text-left px-6 py-3 text-sm nav-inactive transition">🤖 AI Study
+                        Assistant</button></li>
             </ul>
         </div>
 
-        <div class="p-4 border-t border-stone-200 bg-white space-y-2">
+        <div class="p-4 border-t border-navy-700 bg-navy-800 space-y-3">
             <a href="https://drive.google.com/file/d/16SUGU0o59exYQFHD1CaelFyeKmB6HN6W/view?usp=sharing" target="_blank"
-                class="w-full bg-amber-700 hover:bg-amber-800 text-white text-sm font-semibold py-2 px-4 rounded transition flex items-center justify-center space-x-2">
+                class="w-full bg-gold-500 hover:bg-gold-600 text-navy-900 text-sm font-bold py-2 px-4 rounded transition flex items-center justify-center space-x-2 shadow-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -156,15 +216,16 @@
             </a>
             <div class="flex space-x-2">
                 <a href="https://www.linkedin.com/in/balavigneshwar-t-g/" target="_blank"
-                    class="flex-1 bg-[#0a66c2] hover:bg-[#004182] text-white text-sm font-semibold py-2 px-4 rounded transition flex items-center justify-center space-x-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                    class="flex-1 bg-navy-700 hover:bg-navy-600 text-white border border-navy-600 text-sm font-semibold py-2 px-2 rounded transition flex items-center justify-center space-x-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#0a66c2]" fill="currentColor"
+                        viewBox="0 0 24 24">
                         <path
                             d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                     </svg>
                     <span>LinkedIn</span>
                 </a>
                 <a href="https://github.com/BALAVIGNESHWARTG" target="_blank"
-                    class="flex-1 bg-stone-800 hover:bg-stone-900 text-white text-sm font-semibold py-2 px-4 rounded transition flex items-center justify-center space-x-1">
+                    class="flex-1 bg-navy-700 hover:bg-navy-600 text-white border border-navy-600 text-sm font-semibold py-2 px-2 rounded transition flex items-center justify-center space-x-1">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                         <path
                             d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
@@ -172,33 +233,35 @@
                     <span>GitHub</span>
                 </a>
             </div>
-            <div class="w-full flex justify-center mt-2 pt-2 border-t border-stone-100">
-                <a class="libutton" href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7468684132630409216" target="_blank">Subscribe on LinkedIn</a>
-            </div>
+            <a class="libutton shadow-md"
+                href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7468684132630409216"
+                target="_blank">Subscribe to Newsletter</a>
         </div>
     </nav>
 
     <div class="flex-1 flex flex-col h-full overflow-hidden relative">
         <header
-            class="bg-white shadow-sm z-20 p-4 flex justify-between items-center md:hidden border-b border-stone-200">
+            class="bg-navy-800 shadow-md z-20 p-4 flex justify-between items-center md:hidden border-b border-navy-700">
             <div class="flex items-center space-x-3">
-                <button onclick="toggleSidebar()" class="text-2xl text-stone-600 focus:outline-none">☰</button>
-                <h2 class="text-base font-bold text-stone-800 tracking-wide">ZETA RESEARCH</h2>
+                <button onclick="toggleSidebar()" class="text-2xl text-white focus:outline-none">☰</button>
+                <h2 class="text-lg font-bold text-white tracking-widest">0<span class="text-gold-500">G</span></h2>
             </div>
         </header>
 
-        <main class="flex-1 overflow-y-auto p-4 md:p-8 lg:p-12 scroll-smooth custom-scrollbar">
+        <main class="flex-1 overflow-y-auto p-4 md:p-8 lg:p-12 scroll-smooth main-scrollbar">
 
+            <!-- OVERVIEW SECTION -->
             <section id="sec-home" class="max-w-4xl mx-auto block animate-fade-in">
-                <div class="bg-stone-900 rounded-2xl p-6 md:p-10 text-white shadow-xl mb-10 relative overflow-hidden">
+                <div
+                    class="bg-navy-800 rounded-2xl p-6 md:p-10 text-white shadow-2xl mb-10 relative overflow-hidden border-t-4 border-gold-500">
                     <div
-                        class="absolute top-0 right-0 w-64 h-64 bg-amber-600 rounded-full opacity-20 blur-3xl -mr-20 -mt-20">
+                        class="absolute top-0 right-0 w-64 h-64 bg-gold-500 rounded-full opacity-10 blur-3xl -mr-20 -mt-20">
                     </div>
-                    <p class="text-amber-500 font-bold tracking-widest text-sm mb-2 uppercase">Independent Study
-                        Briefing</p>
-                    <h2 class="text-3xl md:text-5xl font-black mb-4 leading-tight">GATE 2027<br>Preparation Protocol
+                    <p class="text-gold-500 font-bold tracking-widest text-sm mb-2 uppercase">A Zeta Research Initiative
+                    </p>
+                    <h2 class="text-4xl md:text-5xl font-black mb-4 leading-tight">GATE 2027<br>Preparation Protocol
                     </h2>
-                    <p class="text-stone-300 text-lg md:text-xl font-light mb-6 max-w-2xl">A complete, free-resource
+                    <p class="text-gray-300 text-lg md:text-xl font-light mb-6 max-w-2xl">A complete, free-resource
                         roadmap from July 2026 to February 2027. From zero to the exam hall.</p>
                     <div class="flex flex-wrap gap-3">
                         <span
@@ -210,7 +273,7 @@
                     </div>
                 </div>
 
-                <div class="prose max-w-none text-stone-600 mb-10 text-lg leading-relaxed">
+                <div class="prose max-w-none text-gray-700 mb-10 text-lg leading-relaxed">
                     <p>Welcome to the digital edition of the Zeta Research roadmap, tailored specifically for AI & Data
                         Science undergraduates targeting the Wadhwani School of Data Science and AI at IIT Madras. This
                         dashboard consolidates exactly what you need to know, the syllabus mapped by true weightage, and
@@ -218,84 +281,77 @@
                 </div>
 
                 <div class="mb-10">
-                    <h3 class="text-2xl font-bold text-stone-800 mb-6 flex items-center"><span
-                            class="bg-amber-100 text-amber-800 p-2 rounded-lg mr-3 text-xl">1</span> Why the DA Paper?
-                    </h3>
+                    <h3 class="text-2xl font-bold text-navy-900 mb-6 flex items-center"><span
+                            class="bg-navy-100 text-navy-800 border border-navy-200 p-2 rounded-lg mr-3 text-xl">1</span>
+                        Why the DA Paper?</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
-                            <h4 class="font-bold text-stone-800 mb-2">Native to Your Degree</h4>
-                            <p class="text-sm text-stone-600">As an AI/DS student, the syllabus is your coursework
+                        <div
+                            class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm border-t-4 border-t-navy-800">
+                            <h4 class="font-bold text-navy-900 mb-2">Native to Your Degree</h4>
+                            <p class="text-sm text-gray-600">As an AI/DS student, the syllabus is your coursework
                                 formalised: Probability, Linear Algebra, ML, Python, and Databases.</p>
                         </div>
-                        <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
-                            <h4 class="font-bold text-stone-800 mb-2">Skip Heavy CS Theory</h4>
-                            <p class="text-sm text-stone-600">You completely bypass Operating Systems, Computer
+                        <div
+                            class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm border-t-4 border-t-gold-500">
+                            <h4 class="font-bold text-navy-900 mb-2">Skip Heavy CS Theory</h4>
+                            <p class="text-sm text-gray-600">You completely bypass Operating Systems, Computer
                                 Architecture, Compilers, and Networks. Highly efficient.</p>
                         </div>
-                        <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
-                            <h4 class="font-bold text-stone-800 mb-2">Direct Route to IITM</h4>
-                            <p class="text-sm text-stone-600">A strong DA score qualifies you directly for the M.Tech
-                                and M.S. (by Research) programs at the Wadhwani School.</p>
+                        <div
+                            class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm border-t-4 border-t-navy-800">
+                            <h4 class="font-bold text-navy-900 mb-2">Direct Route to IITM</h4>
+                            <p class="text-sm text-gray-600">A strong DA score qualifies you directly for the M.Tech and
+                                M.S. (by Research) programs at the Wadhwani School.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="mb-10">
                     <div class="flex justify-between items-end mb-6">
-                        <h3 class="text-2xl font-bold text-stone-800 flex items-center"><span
-                                class="bg-amber-100 text-amber-800 p-2 rounded-lg mr-3 text-xl">2</span> Key Dates &
-                            Application</h3>
-                        <a href="https://drive.google.com/file/d/16SUGU0o59exYQFHD1CaelFyeKmB6HN6W/view?usp=sharing"
-                            target="_blank"
-                            class="hidden md:flex text-amber-700 hover:text-amber-800 font-semibold text-sm items-center transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            Read GATE_2027_Preparation_ZETA_RESEARCH.pdf
-                        </a>
+                        <h3 class="text-2xl font-bold text-navy-900 flex items-center"><span
+                                class="bg-navy-100 text-navy-800 border border-navy-200 p-2 rounded-lg mr-3 text-xl">2</span>
+                            Key Dates & Application</h3>
                     </div>
-                    <div class="bg-white border border-stone-200 rounded-xl overflow-hidden shadow-sm">
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
                         <table class="w-full text-left text-sm">
-                            <thead class="bg-stone-50 border-b border-stone-200">
+                            <thead class="bg-navy-50 border-b border-gray-200">
                                 <tr>
-                                    <th class="p-4 font-semibold text-stone-800">Event Milestone (IIT Madras Organizing)
+                                    <th class="p-4 font-semibold text-navy-900">Event Milestone (IIT Madras Organizing)
                                     </th>
-                                    <th class="p-4 font-semibold text-stone-800">Expected Timeline (GATE 2027)</th>
+                                    <th class="p-4 font-semibold text-navy-900">Expected Timeline (GATE 2027)</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-stone-100 text-stone-600">
-                                <tr>
+                            <tbody class="divide-y divide-gray-100 text-gray-600">
+                                <tr class="hover:bg-gray-50">
                                     <td class="p-4">Official Notification & Website Launch</td>
-                                    <td class="p-4 font-medium text-stone-800">Early August 2026</td>
+                                    <td class="p-4 font-medium text-navy-800">Early August 2026</td>
                                 </tr>
-                                <tr>
+                                <tr class="hover:bg-gray-50">
                                     <td class="p-4">Online Registration Opens (GOAPS)</td>
-                                    <td class="p-4 font-medium text-stone-800">Late August 2026</td>
+                                    <td class="p-4 font-medium text-navy-800">Late August 2026</td>
                                 </tr>
-                                <tr>
+                                <tr class="hover:bg-gray-50">
                                     <td class="p-4">Last Date (Regular Fee)</td>
-                                    <td class="p-4 font-medium text-stone-800">Late September 2026</td>
+                                    <td class="p-4 font-medium text-navy-800">Late September 2026</td>
                                 </tr>
-                                <tr>
+                                <tr class="hover:bg-gray-50">
                                     <td class="p-4">Admit Card Release</td>
-                                    <td class="p-4 font-medium text-stone-800">Early January 2027</td>
+                                    <td class="p-4 font-medium text-navy-800">Early January 2027</td>
                                 </tr>
-                                <tr>
-                                    <td class="p-4">GATE 2027 Exam (CBT)</td>
-                                    <td class="p-4 font-bold text-amber-700">Feb 6, 7, 13, 14, 2027</td>
+                                <tr class="bg-gold-50">
+                                    <td class="p-4 font-bold text-navy-900">GATE 2027 Exam (CBT)</td>
+                                    <td class="p-4 font-bold text-gold-600">Feb 6, 7, 13, 14, 2027</td>
                                 </tr>
-                                <tr>
+                                <tr class="hover:bg-gray-50">
                                     <td class="p-4">Result & Scorecard Declaration</td>
-                                    <td class="p-4 font-medium text-stone-800">Mid-March 2027</td>
+                                    <td class="p-4 font-medium text-navy-800">Mid-March 2027</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="mt-4 p-4 bg-blue-50 border border-blue-100 rounded-xl flex items-start">
-                        <span class="text-blue-500 text-xl mr-3 mt-1">ℹ️</span>
-                        <p class="text-sm text-blue-900 leading-relaxed"><strong>For Final Year Students:</strong> If
+                    <div class="mt-4 p-4 bg-navy-50 border border-navy-100 rounded-xl flex items-start">
+                        <span class="text-gold-500 text-xl mr-3 mt-1">ℹ️</span>
+                        <p class="text-sm text-navy-900 leading-relaxed"><strong>For Final Year Students:</strong> If
                             you are in your final year of B.Tech during the exam (Feb 2027), you are fully eligible.
                             During the application window (Aug 2026), you will upload a bonafide/course-completion
                             certificate issued by your college principal instead of a final degree certificate.</p>
@@ -304,140 +360,145 @@
             </section>
 
             <section id="sec-syllabus" class="max-w-5xl mx-auto hidden animate-fade-in">
-                <h2 class="text-3xl font-bold mb-2 text-stone-800">The Syllabus, Decoded</h2>
-                <p class="text-stone-600 mb-8 leading-relaxed text-lg">
+                <h2 class="text-3xl font-bold mb-2 text-navy-900">The Syllabus, Decoded</h2>
+                <p class="text-gray-600 mb-8 leading-relaxed text-lg">
                     The exact weightage of the 100 marks based on analysis of previous DA papers. Machine Learning and
-                    Probability & Statistics together account for ~40% of the paper. <strong
-                        class="text-stone-900">Click any subject below the chart for the exact topics to study.</strong>
+                    Probability & Statistics together account for ~40% of the paper. <strong class="text-navy-900">Click
+                        any subject below the chart for the exact topics to study.</strong>
                 </p>
 
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 mb-8 relative">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 mb-8 relative">
                     <div class="chart-container">
                         <canvas id="weightageChart"></canvas>
                     </div>
                 </div>
 
-                <h3 class="text-xl font-bold text-stone-800 mb-4">Subject Deep-Dives</h3>
+                <h3 class="text-xl font-bold text-navy-900 mb-4">Subject Deep-Dives</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-                    <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between"
+                    <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-gold-400 transition cursor-pointer flex flex-col justify-between group"
                         onclick="showSyllabusDetails('ml')">
                         <div>
                             <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-lg text-emerald-700">Machine Learning</h4>
-                                <span
-                                    class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-1 rounded">21%</span>
+                                <h4 class="font-bold text-lg text-navy-900 group-hover:text-gold-600 transition">Machine
+                                    Learning</h4>
+                                <span class="bg-navy-800 text-white text-xs font-bold px-2 py-1 rounded">21%</span>
                             </div>
-                            <p class="text-sm text-stone-500 line-clamp-2">Supervised/unsupervised, SVM, PCA, Trees,
+                            <p class="text-sm text-gray-500 line-clamp-2">Supervised/unsupervised, SVM, PCA, Trees,
                                 Bias-Variance, Metrics.</p>
                         </div>
                         <span
-                            class="text-xs font-semibold text-emerald-600 mt-4 uppercase tracking-wide flex items-center">View
+                            class="text-xs font-semibold text-gold-500 mt-4 uppercase tracking-wide flex items-center">View
                             Topics & Strategy →</span>
                     </div>
 
-                    <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between"
+                    <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-gold-400 transition cursor-pointer flex flex-col justify-between group"
                         onclick="showSyllabusDetails('prob')">
                         <div>
                             <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-lg text-amber-700">Probability & Stats</h4>
-                                <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2 py-1 rounded">19%</span>
+                                <h4 class="font-bold text-lg text-navy-900 group-hover:text-gold-600 transition">
+                                    Probability & Stats</h4>
+                                <span class="bg-gold-500 text-white text-xs font-bold px-2 py-1 rounded">19%</span>
                             </div>
-                            <p class="text-sm text-stone-500 line-clamp-2">Bayes, Distributions, Hypothesis Testing,
-                                CLT, Covariance.</p>
+                            <p class="text-sm text-gray-500 line-clamp-2">Bayes, Distributions, Hypothesis Testing, CLT,
+                                Covariance.</p>
                         </div>
                         <span
-                            class="text-xs font-semibold text-amber-600 mt-4 uppercase tracking-wide flex items-center">View
+                            class="text-xs font-semibold text-gold-500 mt-4 uppercase tracking-wide flex items-center">View
                             Topics & Strategy →</span>
                     </div>
 
-                    <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between"
+                    <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-gold-400 transition cursor-pointer flex flex-col justify-between group"
                         onclick="showSyllabusDetails('ga')">
                         <div>
                             <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-lg text-purple-700">General Aptitude</h4>
-                                <span
-                                    class="bg-purple-100 text-purple-800 text-xs font-bold px-2 py-1 rounded">15%</span>
+                                <h4 class="font-bold text-lg text-navy-900 group-hover:text-gold-600 transition">General
+                                    Aptitude</h4>
+                                <span class="bg-gray-200 text-navy-800 text-xs font-bold px-2 py-1 rounded">15%</span>
                             </div>
-                            <p class="text-sm text-stone-500 line-clamp-2">Fixed marks common to all papers. Verbal,
+                            <p class="text-sm text-gray-500 line-clamp-2">Fixed marks common to all papers. Verbal,
                                 quant, spatial reasoning.</p>
                         </div>
                         <span
-                            class="text-xs font-semibold text-purple-600 mt-4 uppercase tracking-wide flex items-center">View
+                            class="text-xs font-semibold text-gold-500 mt-4 uppercase tracking-wide flex items-center">View
                             Topics & Strategy →</span>
                     </div>
 
-                    <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between"
+                    <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-gold-400 transition cursor-pointer flex flex-col justify-between group"
                         onclick="showSyllabusDetails('la')">
                         <div>
                             <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-lg text-blue-700">Linear Algebra</h4>
-                                <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">13%</span>
+                                <h4 class="font-bold text-lg text-navy-900 group-hover:text-gold-600 transition">Linear
+                                    Algebra</h4>
+                                <span class="bg-navy-100 text-navy-800 text-xs font-bold px-2 py-1 rounded">13%</span>
                             </div>
-                            <p class="text-sm text-stone-500 line-clamp-2">Matrices, Eigenvalues, SVD, Projections,
-                                Rank.</p>
-                        </div>
-                        <span
-                            class="text-xs font-semibold text-blue-600 mt-4 uppercase tracking-wide flex items-center">View
-                            Topics & Strategy →</span>
-                    </div>
-
-                    <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between"
-                        onclick="showSyllabusDetails('ai')">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-lg text-rose-700">Artificial Intelligence</h4>
-                                <span class="bg-rose-100 text-rose-800 text-xs font-bold px-2 py-1 rounded">11%</span>
-                            </div>
-                            <p class="text-sm text-stone-500 line-clamp-2">A* Search, Minimax, Logic, Bayesian Networks.
+                            <p class="text-sm text-gray-500 line-clamp-2">Matrices, Eigenvalues, SVD, Projections, Rank.
                             </p>
                         </div>
                         <span
-                            class="text-xs font-semibold text-rose-600 mt-4 uppercase tracking-wide flex items-center">View
+                            class="text-xs font-semibold text-gold-500 mt-4 uppercase tracking-wide flex items-center">View
                             Topics & Strategy →</span>
                     </div>
 
-                    <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between"
+                    <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-gold-400 transition cursor-pointer flex flex-col justify-between group"
+                        onclick="showSyllabusDetails('ai')">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-lg text-navy-900 group-hover:text-gold-600 transition">
+                                    Artificial Intelligence</h4>
+                                <span class="bg-navy-100 text-navy-800 text-xs font-bold px-2 py-1 rounded">11%</span>
+                            </div>
+                            <p class="text-sm text-gray-500 line-clamp-2">A* Search, Minimax, Logic, Bayesian Networks.
+                            </p>
+                        </div>
+                        <span
+                            class="text-xs font-semibold text-gold-500 mt-4 uppercase tracking-wide flex items-center">View
+                            Topics & Strategy →</span>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-gold-400 transition cursor-pointer flex flex-col justify-between group"
                         onclick="showSyllabusDetails('calc')">
                         <div>
                             <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-lg text-teal-700">Calculus & Opt.</h4>
-                                <span class="bg-teal-100 text-teal-800 text-xs font-bold px-2 py-1 rounded">10%</span>
+                                <h4 class="font-bold text-lg text-navy-900 group-hover:text-gold-600 transition">
+                                    Calculus & Opt.</h4>
+                                <span class="bg-navy-100 text-navy-800 text-xs font-bold px-2 py-1 rounded">10%</span>
                             </div>
-                            <p class="text-sm text-stone-500 line-clamp-2">Maxima/minima, Gradients, Taylor series.</p>
+                            <p class="text-sm text-gray-500 line-clamp-2">Maxima/minima, Gradients, Taylor series.</p>
                         </div>
                         <span
-                            class="text-xs font-semibold text-teal-600 mt-4 uppercase tracking-wide flex items-center">View
+                            class="text-xs font-semibold text-gold-500 mt-4 uppercase tracking-wide flex items-center">View
                             Topics & Strategy →</span>
                     </div>
 
-                    <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between"
+                    <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-gold-400 transition cursor-pointer flex flex-col justify-between group"
                         onclick="showSyllabusDetails('prog')">
                         <div>
                             <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-lg text-indigo-700">Programming/DSA</h4>
-                                <span
-                                    class="bg-indigo-100 text-indigo-800 text-xs font-bold px-2 py-1 rounded">10%</span>
+                                <h4 class="font-bold text-lg text-navy-900 group-hover:text-gold-600 transition">
+                                    Programming/DSA</h4>
+                                <span class="bg-navy-100 text-navy-800 text-xs font-bold px-2 py-1 rounded">10%</span>
                             </div>
-                            <p class="text-sm text-stone-500 line-clamp-2">Python execution, Big-O, Trees, Graphs,
+                            <p class="text-sm text-gray-500 line-clamp-2">Python execution, Big-O, Trees, Graphs,
                                 Sorting.</p>
                         </div>
                         <span
-                            class="text-xs font-semibold text-indigo-600 mt-4 uppercase tracking-wide flex items-center">View
+                            class="text-xs font-semibold text-gold-500 mt-4 uppercase tracking-wide flex items-center">View
                             Topics & Strategy →</span>
                     </div>
 
-                    <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between"
+                    <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-gold-400 transition cursor-pointer flex flex-col justify-between group"
                         onclick="showSyllabusDetails('dbms')">
                         <div>
                             <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-bold text-lg text-slate-700">DBMS</h4>
-                                <span class="bg-slate-100 text-slate-800 text-xs font-bold px-2 py-1 rounded">8%</span>
+                                <h4 class="font-bold text-lg text-navy-900 group-hover:text-gold-600 transition">DBMS
+                                </h4>
+                                <span class="bg-navy-100 text-navy-800 text-xs font-bold px-2 py-1 rounded">8%</span>
                             </div>
-                            <p class="text-sm text-stone-500 line-clamp-2">SQL, Normalization (3NF/BCNF), ER Models.</p>
+                            <p class="text-sm text-gray-500 line-clamp-2">SQL, Normalization (3NF/BCNF), ER Models.</p>
                         </div>
                         <span
-                            class="text-xs font-semibold text-slate-600 mt-4 uppercase tracking-wide flex items-center">View
+                            class="text-xs font-semibold text-gold-500 mt-4 uppercase tracking-wide flex items-center">View
                             Topics & Strategy →</span>
                     </div>
 
@@ -445,59 +506,59 @@
             </section>
 
             <section id="sec-timeline" class="max-w-4xl mx-auto hidden animate-fade-in">
-                <h2 class="text-3xl font-bold mb-2 text-stone-800">The 8-Month Execution Plan</h2>
-                <p class="text-stone-600 mb-8 leading-relaxed text-lg">
+                <h2 class="text-3xl font-bold mb-2 text-navy-900">The 8-Month Execution Plan</h2>
+                <p class="text-gray-600 mb-8 leading-relaxed text-lg">
                     This roadmap maps out your study from July 2026 to February 2027 based on a <strong>2-3 hour daily
                         budget</strong>. It sequences maths before ML, ensuring you build foundational intuition rather
                     than memorising algorithms.
                 </p>
 
-                <div class="bg-white border border-stone-200 rounded-xl p-6 mb-10 shadow-sm">
-                    <h3 class="font-bold text-xl mb-4 text-stone-800">Ideal Weekly Routine (Phase 2 Example)</h3>
+                <div class="bg-white border border-gray-200 rounded-xl p-6 mb-10 shadow-sm">
+                    <h3 class="font-bold text-xl mb-4 text-navy-900">Ideal Weekly Routine (Phase 2 Example)</h3>
                     <div class="overflow-x-auto">
                         <table class="w-full text-sm text-left">
-                            <thead class="bg-stone-50 text-stone-700">
+                            <thead class="bg-navy-50 text-navy-900">
                                 <tr>
-                                    <th class="p-3 border-b">Day</th>
-                                    <th class="p-3 border-b">Block 1 (~75 min)</th>
-                                    <th class="p-3 border-b">Block 2 (~60 min)</th>
+                                    <th class="p-3 border-b border-gray-200">Day</th>
+                                    <th class="p-3 border-b border-gray-200">Block 1 (~75 min)</th>
+                                    <th class="p-3 border-b border-gray-200">Block 2 (~60 min)</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-stone-100">
+                            <tbody class="divide-y divide-gray-100 text-gray-700">
                                 <tr>
-                                    <td class="p-3 font-semibold">Monday</td>
+                                    <td class="p-3 font-semibold text-navy-800">Monday</td>
                                     <td class="p-3">New ML topic learn</td>
                                     <td class="p-3">Solve 8-10 problems on it</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3 font-semibold">Tuesday</td>
+                                    <td class="p-3 font-semibold text-navy-800">Tuesday</td>
                                     <td class="p-3">New ML/AI topic learn</td>
                                     <td class="p-3">Solve problems + Python practice</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3 font-semibold">Wednesday</td>
+                                    <td class="p-3 font-semibold text-navy-800">Wednesday</td>
                                     <td class="p-3">New maths/DBMS topic</td>
                                     <td class="p-3">Solve problems on it</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3 font-semibold">Thursday</td>
+                                    <td class="p-3 font-semibold text-navy-800">Thursday</td>
                                     <td class="p-3">Continue current topic</td>
                                     <td class="p-3">Mixed problem set</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3 font-semibold">Friday</td>
+                                    <td class="p-3 font-semibold text-navy-800">Friday</td>
                                     <td class="p-3">New topic / finish week's plan</td>
                                     <td class="p-3">Problems + log mistakes</td>
                                 </tr>
-                                <tr class="bg-amber-50">
-                                    <td class="p-3 font-bold text-amber-800">Saturday</td>
-                                    <td class="p-3 font-medium text-amber-800">Weekly revision (all of this week)</td>
-                                    <td class="p-3 text-amber-800">Re-solve hard problems; formula sheet</td>
+                                <tr class="bg-gold-50">
+                                    <td class="p-3 font-bold text-gold-600">Saturday</td>
+                                    <td class="p-3 font-medium text-gold-600">Weekly revision (all of this week)</td>
+                                    <td class="p-3 text-gold-600">Re-solve hard problems; formula sheet</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3 font-semibold text-stone-500">Sunday</td>
-                                    <td class="p-3 text-stone-500">Light: GA practice / buffer / rest</td>
-                                    <td class="p-3 text-stone-500">Plan next week</td>
+                                    <td class="p-3 font-semibold text-gray-400">Sunday</td>
+                                    <td class="p-3 text-gray-500">Light: GA practice / buffer / rest</td>
+                                    <td class="p-3 text-gray-500">Plan next week</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -507,16 +568,17 @@
                 <div class="relative timeline-line pl-8 space-y-8 mt-10">
                     <div class="relative">
                         <div
-                            class="absolute -left-10 mt-1 w-6 h-6 bg-stone-300 rounded-full border-4 border-[#f5f5f4] z-10 text-stone-600 text-xs flex items-center justify-center font-bold">
+                            class="absolute -left-10 mt-1 w-6 h-6 bg-navy-800 rounded-full border-4 border-[#F8F9FA] z-10 text-white text-xs flex items-center justify-center font-bold">
                             1</div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
-                            <span class="text-xs font-bold text-stone-500 uppercase tracking-wider">Jul 2026 - Aug
+                        <div
+                            class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 border-l-4 border-l-navy-800">
+                            <span class="text-xs font-bold text-gold-500 uppercase tracking-wider">Jul 2026 - Aug
                                 2026</span>
-                            <h3 class="text-xl font-bold mt-1 mb-2 text-stone-800">Phase 1: Foundations (Maths Build)
+                            <h3 class="text-xl font-bold mt-1 mb-2 text-navy-900">Phase 1: Foundations (Maths Build)
                             </h3>
-                            <p class="text-sm text-stone-600 mb-3">Master the language of AI. You cannot do ML without
+                            <p class="text-sm text-gray-600 mb-3">Master the language of AI. You cannot do ML without
                                 Math.</p>
-                            <ul class="list-disc pl-5 text-stone-600 text-sm space-y-1">
+                            <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
                                 <li><strong>Probability:</strong> Bayes, Distributions, Expectation.</li>
                                 <li><strong>Statistics:</strong> CLT, Hypothesis Testing (z/t/chi).</li>
                                 <li><strong>Linear Algebra:</strong> Matrices, Gaussian elimination, Rank.</li>
@@ -528,15 +590,16 @@
 
                     <div class="relative">
                         <div
-                            class="absolute -left-10 mt-1 w-6 h-6 bg-emerald-500 rounded-full border-4 border-[#f5f5f4] z-10 text-white text-xs flex items-center justify-center font-bold">
+                            class="absolute -left-10 mt-1 w-6 h-6 bg-gold-500 rounded-full border-4 border-[#F8F9FA] z-10 text-white text-xs flex items-center justify-center font-bold">
                             2</div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-emerald-200">
-                            <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Sep 2026 - Nov
+                        <div
+                            class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 border-l-4 border-l-gold-500">
+                            <span class="text-xs font-bold text-gold-600 uppercase tracking-wider">Sep 2026 - Nov
                                 2026</span>
-                            <h3 class="text-xl font-bold mt-1 mb-2 text-stone-800">Phase 2: Core Build (ML & AI)</h3>
-                            <p class="text-sm text-stone-600 mb-3">Implement conceptually. Understand math behind
+                            <h3 class="text-xl font-bold mt-1 mb-2 text-navy-900">Phase 2: Core Build (ML & AI)</h3>
+                            <p class="text-sm text-gray-600 mb-3">Implement conceptually. Understand math behind
                                 algorithms.</p>
-                            <ul class="list-disc pl-5 text-stone-600 text-sm space-y-1">
+                            <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
                                 <li>Finish Linear Algebra (SVD, Eigen) & Calculus.</li>
                                 <li><strong>Machine Learning:</strong> Regression, Logistic, SVM, Trees, PCA, K-Means,
                                     MLE, Bias-Variance.</li>
@@ -549,16 +612,17 @@
 
                     <div class="relative">
                         <div
-                            class="absolute -left-10 mt-1 w-6 h-6 bg-blue-500 rounded-full border-4 border-[#f5f5f4] z-10 text-white text-xs flex items-center justify-center font-bold">
+                            class="absolute -left-10 mt-1 w-6 h-6 bg-navy-800 rounded-full border-4 border-[#F8F9FA] z-10 text-white text-xs flex items-center justify-center font-bold">
                             3</div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-blue-200">
-                            <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Dec 2026 - Jan
+                        <div
+                            class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 border-l-4 border-l-navy-800">
+                            <span class="text-xs font-bold text-gold-500 uppercase tracking-wider">Dec 2026 - Jan
                                 2027</span>
-                            <h3 class="text-xl font-bold mt-1 mb-2 text-stone-800">Phase 3: Systems & Practice Ramp-up
+                            <h3 class="text-xl font-bold mt-1 mb-2 text-navy-900">Phase 3: Systems & Practice Ramp-up
                             </h3>
-                            <p class="text-sm text-stone-600 mb-3">Secure deterministic coding marks and start past
+                            <p class="text-sm text-gray-600 mb-3">Secure deterministic coding marks and start past
                                 papers.</p>
-                            <ul class="list-disc pl-5 text-stone-600 text-sm space-y-1">
+                            <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
                                 <li><strong>DBMS & DSA:</strong> Normalization, SQL, Python tracing, Big-O.</li>
                                 <li>Start daily General Aptitude sets.</li>
                                 <li>Solve official DA PYQs (2024, 2025, 2026) subject by subject.</li>
@@ -569,15 +633,14 @@
 
                     <div class="relative">
                         <div
-                            class="absolute -left-10 mt-1 w-6 h-6 bg-amber-600 rounded-full border-4 border-[#f5f5f4] z-10 text-white text-xs flex items-center justify-center font-bold">
+                            class="absolute -left-10 mt-1 w-6 h-6 bg-gold-500 rounded-full border-4 border-[#F8F9FA] z-10 text-white text-xs flex items-center justify-center font-bold shadow-lg">
                             4</div>
-                        <div
-                            class="bg-gradient-to-r from-amber-50 to-white p-6 rounded-xl shadow-sm border border-amber-300">
-                            <span class="text-xs font-bold text-amber-700 uppercase tracking-wider">Jan 2027 - Feb
+                        <div class="bg-navy-800 p-6 rounded-xl shadow-xl border border-navy-700">
+                            <span class="text-xs font-bold text-gold-500 uppercase tracking-wider">Jan 2027 - Feb
                                 2027</span>
-                            <h3 class="text-xl font-bold mt-1 mb-2 text-stone-800">Phase 4: Peak & Revise</h3>
-                            <p class="text-sm text-stone-700 font-medium">Build exam temperament and consolidate.</p>
-                            <ul class="list-disc pl-5 text-stone-600 text-sm space-y-1 mt-2">
+                            <h3 class="text-xl font-bold mt-1 mb-2 text-white">Phase 4: Peak & Revise</h3>
+                            <p class="text-sm text-gray-300 font-medium">Build exam temperament and consolidate.</p>
+                            <ul class="list-disc pl-5 text-gray-400 text-sm space-y-1 mt-2">
                                 <li>Take 10-15 full-length 3-hour mocks.</li>
                                 <li>Revise purely from your one-page formula sheets and Error Log.</li>
                                 <li>Lock in time-management strategy.</li>
@@ -588,61 +651,61 @@
             </section>
 
             <section id="sec-resources" class="max-w-4xl mx-auto hidden animate-fade-in">
-                <h2 class="text-3xl font-bold mb-2 text-stone-800">Master Resource Shelf</h2>
-                <p class="text-stone-600 mb-8 leading-relaxed text-lg">
+                <h2 class="text-3xl font-bold mb-2 text-navy-900">Master Resource Shelf</h2>
+                <p class="text-gray-600 mb-8 leading-relaxed text-lg">
                     Everything below is free to access. <strong>The golden rule:</strong> pick one primary source per
                     subject and stick with it. Endlessly switching resources is procrastination in disguise.
                 </p>
 
-                <div class="flex border-b border-stone-300 mb-6 overflow-x-auto custom-scrollbar">
+                <div class="flex border-b border-gray-300 mb-6 overflow-x-auto custom-scrollbar">
                     <button class="px-5 py-3 font-medium text-sm whitespace-nowrap tab-active" id="tab-btn-math"
                         onclick="switchTab('math')">Maths Foundations</button>
                     <button
-                        class="px-5 py-3 font-medium text-sm whitespace-nowrap text-stone-500 hover:text-stone-800 transition"
+                        class="px-5 py-3 font-medium text-sm whitespace-nowrap text-gray-500 hover:text-navy-900 transition"
                         id="tab-btn-ml" onclick="switchTab('ml')">ML & AI</button>
                     <button
-                        class="px-5 py-3 font-medium text-sm whitespace-nowrap text-stone-500 hover:text-stone-800 transition"
+                        class="px-5 py-3 font-medium text-sm whitespace-nowrap text-gray-500 hover:text-navy-900 transition"
                         id="tab-btn-sys" onclick="switchTab('sys')">Systems (DSA/DBMS)</button>
                     <button
-                        class="px-5 py-3 font-medium text-sm whitespace-nowrap text-stone-500 hover:text-stone-800 transition"
+                        class="px-5 py-3 font-medium text-sm whitespace-nowrap text-gray-500 hover:text-navy-900 transition"
                         id="tab-btn-prac" onclick="switchTab('prac')">Practice & Books</button>
                 </div>
 
                 <div id="tab-math"
-                    class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-stone-200 block animate-fade-in">
-                    <h3 class="text-xl font-bold text-stone-800 mb-6">Probability, Statistics & Linear Algebra</h3>
+                    class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-200 block animate-fade-in">
+                    <h3 class="text-xl font-bold text-navy-900 mb-6">Probability, Statistics & Linear Algebra</h3>
                     <div class="space-y-6">
                         <div
-                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-stone-100 last:border-0 last:pb-0">
+                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-gray-100 last:border-0 last:pb-0">
                             <div
-                                class="bg-amber-100 text-amber-800 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
+                                class="bg-navy-50 text-gold-600 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
                                 📺</div>
                             <div>
-                                <h4 class="font-bold text-lg text-stone-800">StatQuest with Josh Starmer (YouTube)</h4>
-                                <p class="text-sm text-stone-600 mt-1">Intuitive, visual breakdowns of every stats
+                                <h4 class="font-bold text-lg text-navy-900">StatQuest with Josh Starmer (YouTube)</h4>
+                                <p class="text-sm text-gray-600 mt-1">Intuitive, visual breakdowns of every stats
                                     concept (distributions, hypothesis testing). Ideal for first pass before formal
                                     math.</p>
                             </div>
                         </div>
                         <div
-                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-stone-100 last:border-0 last:pb-0">
+                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-gray-100 last:border-0 last:pb-0">
                             <div
-                                class="bg-amber-100 text-amber-800 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
+                                class="bg-navy-50 text-gold-600 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
                                 📺</div>
                             <div>
-                                <h4 class="font-bold text-lg text-stone-800">Gilbert Strang - MIT OCW 18.06</h4>
-                                <p class="text-sm text-stone-600 mt-1">The global gold standard for Linear Algebra.
-                                    Watch on YouTube. Focus heavily on Matrices, Eigenvectors, and Vector spaces.</p>
+                                <h4 class="font-bold text-lg text-navy-900">Gilbert Strang - MIT OCW 18.06</h4>
+                                <p class="text-sm text-gray-600 mt-1">The global gold standard for Linear Algebra. Watch
+                                    on YouTube. Focus heavily on Matrices, Eigenvectors, and Vector spaces.</p>
                             </div>
                         </div>
                         <div
-                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-stone-100 last:border-0 last:pb-0">
+                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-gray-100 last:border-0 last:pb-0">
                             <div
-                                class="bg-amber-100 text-amber-800 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
+                                class="bg-navy-50 text-gold-600 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
                                 🌐</div>
                             <div>
-                                <h4 class="font-bold text-lg text-stone-800">Khan Academy & 3Blue1Brown</h4>
-                                <p class="text-sm text-stone-600 mt-1">Use Khan for raw numerical practice on
+                                <h4 class="font-bold text-lg text-navy-900">Khan Academy & 3Blue1Brown</h4>
+                                <p class="text-sm text-gray-600 mt-1">Use Khan for raw numerical practice on
                                     Prob/Stats/Calculus. Use 3B1B's "Essence of Linear Algebra/Calculus" for visual
                                     geometric intuition.</p>
                             </div>
@@ -651,80 +714,79 @@
                 </div>
 
                 <div id="tab-ml"
-                    class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-stone-200 hidden animate-fade-in">
-                    <h3 class="text-xl font-bold text-stone-800 mb-6">Machine Learning & Artificial Intelligence</h3>
+                    class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-200 hidden animate-fade-in">
+                    <h3 class="text-xl font-bold text-navy-900 mb-6">Machine Learning & Artificial Intelligence</h3>
                     <div class="space-y-6">
                         <div
-                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-stone-100 last:border-0 last:pb-0">
+                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-gray-100 last:border-0 last:pb-0">
                             <div
-                                class="bg-emerald-100 text-emerald-800 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
+                                class="bg-navy-50 text-gold-600 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
                                 🎓</div>
                             <div>
-                                <h4 class="font-bold text-lg text-stone-800">Andrew Ng - Machine Learning (Coursera)
-                                </h4>
-                                <p class="text-sm text-stone-600 mt-1">The canonical intro. Audit for free. Classical ML
+                                <h4 class="font-bold text-lg text-navy-900">Andrew Ng - Machine Learning (Coursera)</h4>
+                                <p class="text-sm text-gray-600 mt-1">The canonical intro. Audit for free. Classical ML
                                     explained from first principles. Very aligned with GATE DA depth.</p>
                             </div>
                         </div>
                         <div
-                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-stone-100 last:border-0 last:pb-0">
+                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-gray-100 last:border-0 last:pb-0">
                             <div
-                                class="bg-emerald-100 text-emerald-800 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
+                                class="bg-navy-50 text-gold-600 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
                                 📺</div>
                             <div>
-                                <h4 class="font-bold text-lg text-stone-800">StatQuest Machine Learning</h4>
-                                <p class="text-sm text-stone-600 mt-1">Algorithm-by-algorithm intuition. Perfect
+                                <h4 class="font-bold text-lg text-navy-900">StatQuest Machine Learning</h4>
+                                <p class="text-sm text-gray-600 mt-1">Algorithm-by-algorithm intuition. Perfect
                                     companion to understand the "why" of PCA, Trees, and SVM before doing the math.</p>
                             </div>
                         </div>
                         <div
-                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-stone-100 last:border-0 last:pb-0">
+                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-gray-100 last:border-0 last:pb-0">
                             <div
-                                class="bg-emerald-100 text-emerald-800 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
+                                class="bg-navy-50 text-gold-600 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
                                 🏛️</div>
                             <div>
-                                <h4 class="font-bold text-lg text-stone-800">NPTEL - AI & ML Courses</h4>
-                                <p class="text-sm text-stone-600 mt-1">Use NPTEL modules specifically for AI Search
-                                    (A*), Logic, and Minimax. Matches the exact rigor IITs expect.</p>
+                                <h4 class="font-bold text-lg text-navy-900">NPTEL - AI & ML Courses</h4>
+                                <p class="text-sm text-gray-600 mt-1">Use NPTEL modules specifically for AI Search (A*),
+                                    Logic, and Minimax. Matches the exact rigor IITs expect.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div id="tab-sys"
-                    class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-stone-200 hidden animate-fade-in">
-                    <h3 class="text-xl font-bold text-stone-800 mb-6">Programming (Python), DSA & DBMS</h3>
+                    class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-200 hidden animate-fade-in">
+                    <h3 class="text-xl font-bold text-navy-900 mb-6">Programming (Python), DSA & DBMS</h3>
                     <div class="space-y-6">
                         <div
-                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-stone-100 last:border-0 last:pb-0">
+                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-gray-100 last:border-0 last:pb-0">
                             <div
-                                class="bg-blue-100 text-blue-800 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
+                                class="bg-navy-50 text-gold-600 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
                                 💻</div>
                             <div>
-                                <h4 class="font-bold text-lg text-stone-800">GeeksForGeeks Python & DSA</h4>
-                                <p class="text-sm text-stone-600 mt-1">Free explanations, Python code tracing, and
+                                <h4 class="font-bold text-lg text-navy-900">GeeksForGeeks Python & DSA</h4>
+                                <p class="text-sm text-gray-600 mt-1">Free explanations, Python code tracing, and
                                     practice for every data structure. Master Big-O notation here.</p>
                             </div>
                         </div>
                         <div
-                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-stone-100 last:border-0 last:pb-0">
+                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-gray-100 last:border-0 last:pb-0">
                             <div
-                                class="bg-blue-100 text-blue-800 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
+                                class="bg-navy-50 text-gold-600 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
                                 📺</div>
                             <div>
-                                <h4 class="font-bold text-lg text-stone-800">Gate Smashers / Knowledge Gate</h4>
-                                <p class="text-sm text-stone-600 mt-1">Excellent YouTube breakdowns of DBMS
-                                    Normalization (1NF to BCNF) and Relational Algebra. High yield topics.</p>
+                                <h4 class="font-bold text-lg text-navy-900">Gate Smashers / Knowledge Gate</h4>
+                                <p class="text-sm text-gray-600 mt-1">Excellent YouTube breakdowns of DBMS Normalization
+                                    (1NF to BCNF) and Relational Algebra. High yield topics.</p>
                             </div>
                         </div>
                         <div
-                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-stone-100 last:border-0 last:pb-0">
+                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-gray-100 last:border-0 last:pb-0">
                             <div
-                                class="bg-blue-100 text-blue-800 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
+                                class="bg-navy-50 text-gold-600 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
                                 📝</div>
                             <div>
-                                <h4 class="font-bold text-lg text-stone-800">Free SQL Practice (SQLBolt)</h4>
-                                <p class="text-sm text-stone-600 mt-1">Hands-on browser-based SQL query practice. Don't
+                                <h4 class="font-bold text-lg text-navy-900">Free SQL Practice (SQLBolt)</h4>
+                                <p class="text-sm text-gray-600 mt-1">Hands-on browser-based SQL query practice. Don't
                                     just read SQL theory; write it.</p>
                             </div>
                         </div>
@@ -732,41 +794,41 @@
                 </div>
 
                 <div id="tab-prac"
-                    class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-stone-200 hidden animate-fade-in">
-                    <h3 class="text-xl font-bold text-stone-800 mb-6">Standard Texts & Practice Portals</h3>
+                    class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-200 hidden animate-fade-in">
+                    <h3 class="text-xl font-bold text-navy-900 mb-6">Standard Texts & Practice Portals</h3>
                     <div class="space-y-6">
                         <div
-                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-stone-100 last:border-0 last:pb-0">
+                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-gray-100 last:border-0 last:pb-0">
                             <div
-                                class="bg-stone-100 text-stone-800 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
+                                class="bg-navy-50 text-gold-600 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
                                 🏆</div>
                             <div>
-                                <h4 class="font-bold text-lg text-stone-800">NPTEL GATE Portal & GATE Overflow</h4>
-                                <p class="text-sm text-stone-600 mt-1"><strong>The most valuable resource.</strong>
-                                    NPTEL offers official topic-mapped lectures. GATE Overflow has all PYQs with
-                                    detailed community solutions.</p>
+                                <h4 class="font-bold text-lg text-navy-900">NPTEL GATE Portal & GATE Overflow</h4>
+                                <p class="text-sm text-gray-600 mt-1"><strong>The most valuable resource.</strong> NPTEL
+                                    offers official topic-mapped lectures. GATE Overflow has all PYQs with detailed
+                                    community solutions.</p>
                             </div>
                         </div>
                         <div
-                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-stone-100 last:border-0 last:pb-0">
+                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-gray-100 last:border-0 last:pb-0">
                             <div
-                                class="bg-stone-100 text-stone-800 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
+                                class="bg-navy-50 text-gold-600 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
                                 📖</div>
                             <div>
-                                <h4 class="font-bold text-lg text-stone-800">Book: Intro to Statistical Learning (ISLR)
+                                <h4 class="font-bold text-lg text-navy-900">Book: Intro to Statistical Learning (ISLR)
                                 </h4>
-                                <p class="text-sm text-stone-600 mt-1">Available legally as a free PDF. The definitive
+                                <p class="text-sm text-gray-600 mt-1">Available legally as a free PDF. The definitive
                                     text for classical ML. Read chapters on Regression, Classification, and SVMs.</p>
                             </div>
                         </div>
                         <div
-                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-stone-100 last:border-0 last:pb-0">
+                            class="flex flex-col md:flex-row gap-4 md:items-start pb-6 border-b border-gray-100 last:border-0 last:pb-0">
                             <div
-                                class="bg-stone-100 text-stone-800 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
+                                class="bg-navy-50 text-gold-600 p-3 rounded-lg text-2xl w-14 h-14 flex items-center justify-center flex-shrink-0">
                                 📖</div>
                             <div>
-                                <h4 class="font-bold text-lg text-stone-800">Book: Mathematics for Machine Learning</h4>
-                                <p class="text-sm text-stone-600 mt-1">Free PDF from authors. Perfect reference text for
+                                <h4 class="font-bold text-lg text-navy-900">Book: Mathematics for Machine Learning</h4>
+                                <p class="text-sm text-gray-600 mt-1">Free PDF from authors. Perfect reference text for
                                     bridging Linear Algebra, Calculus, and Probability directly to ML algorithms.</p>
                             </div>
                         </div>
@@ -775,17 +837,16 @@
             </section>
 
             <section id="sec-strategy" class="max-w-4xl mx-auto hidden animate-fade-in">
-                <h2 class="text-3xl font-bold mb-2 text-stone-800">Exam Strategy & Mock Tests</h2>
-                <p class="text-stone-600 mb-8 leading-relaxed text-lg">
+                <h2 class="text-3xl font-bold mb-2 text-navy-900">Exam Strategy & Mock Tests</h2>
+                <p class="text-gray-600 mb-8 leading-relaxed text-lg">
                     How the paper is actually tested—and beaten. 3 hours, 65 questions, 100 marks. Managing the clock is
                     a skill built in mocks, not improvised on exam day.
                 </p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div
-                        class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm border-t-4 border-t-amber-600">
-                        <h3 class="text-xl font-bold text-stone-800 mb-3">The 3-Pass Approach</h3>
-                        <ol class="space-y-3 text-sm text-stone-600 list-decimal pl-4">
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm border-t-4 border-t-navy-800">
+                        <h3 class="text-xl font-bold text-navy-900 mb-3">The 3-Pass Approach</h3>
+                        <ol class="space-y-3 text-sm text-gray-600 list-decimal pl-4">
                             <li><strong>Pass 1 (~90 min):</strong> Go front to back. Bank all easy, fast marks. Flag
                                 anything needing heavy thought and move on immediately.</li>
                             <li><strong>Pass 2 (~60 min):</strong> Return to flagged questions worth the time. Attempt
@@ -795,9 +856,9 @@
                         </ol>
                     </div>
 
-                    <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm border-t-4 border-t-red-600">
-                        <h3 class="text-xl font-bold text-stone-800 mb-3">Negative Marking Discipline</h3>
-                        <ul class="space-y-3 text-sm text-stone-600 list-disc pl-4">
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm border-t-4 border-t-gold-500">
+                        <h3 class="text-xl font-bold text-navy-900 mb-3">Negative Marking Discipline</h3>
+                        <ul class="space-y-3 text-sm text-gray-600 list-disc pl-4">
                             <li><strong>NAT & MSQ:</strong> No penalty. Attempt all of them, always. Even a reasoned
                                 guess is free expected value.</li>
                             <li><strong>MCQ:</strong> -1/3 for 1-mark, -2/3 for 2-mark. Mark only if 80%+ confident or
@@ -808,21 +869,21 @@
                     </div>
                 </div>
 
-                <div class="bg-stone-900 text-white p-8 rounded-xl shadow-lg relative overflow-hidden">
+                <div class="bg-navy-800 text-white p-8 rounded-xl shadow-lg relative overflow-hidden">
                     <div class="relative z-10">
-                        <h3 class="text-2xl font-bold text-amber-500 mb-4">The Mock-Test System (Jan-Feb)</h3>
-                        <p class="text-stone-300 mb-4">Mocks train speed and temperament. Do not just "take" mocks;
+                        <h3 class="text-2xl font-bold text-gold-500 mb-4">The Mock-Test System (Jan-Feb)</h3>
+                        <p class="text-gray-300 mb-4">Mocks train speed and temperament. Do not just "take" mocks;
                             analyze them.</p>
-                        <ul class="space-y-3 text-stone-300 text-sm">
-                            <li class="flex items-start"><span class="text-amber-500 mr-2">✔</span> <strong>Subject
-                                    Tests first (Dec):</strong> Confirm a subject is solid before moving on.</li>
-                            <li class="flex items-start"><span class="text-amber-500 mr-2">✔</span> <strong>Full 3-Hour
+                        <ul class="space-y-3 text-gray-300 text-sm">
+                            <li class="flex items-start"><span class="text-gold-500 mr-2">✔</span> <strong>Subject Tests
+                                    first (Dec):</strong> Confirm a subject is solid before moving on.</li>
+                            <li class="flex items-start"><span class="text-gold-500 mr-2">✔</span> <strong>Full 3-Hour
                                     Mocks (Jan):</strong> Start with 1-2 a week, build to 3. Sit them at the exact time
                                 of day as your real GATE slot.</li>
-                            <li class="flex items-start"><span class="text-amber-500 mr-2">✔</span> <strong>Analyze more
+                            <li class="flex items-start"><span class="text-gold-500 mr-2">✔</span> <strong>Analyze more
                                     than you attempt:</strong> Classify every wrong answer as: Concept Gap, Silly Error,
                                 or Time Pressure. Fix the root cause.</li>
-                            <li class="flex items-start"><span class="text-amber-500 mr-2">✔</span> <strong>Track the
+                            <li class="flex items-start"><span class="text-gold-500 mr-2">✔</span> <strong>Track the
                                     trend:</strong> One low score means nothing; a rising trend across 10-15 mocks is
                                 the real signal.</li>
                         </ul>
@@ -831,73 +892,73 @@
             </section>
 
             <section id="sec-revision" class="max-w-4xl mx-auto hidden animate-fade-in">
-                <h2 class="text-3xl font-bold mb-2 text-stone-800">Revision Protocol & Final 30 Days</h2>
-                <p class="text-stone-600 mb-8 leading-relaxed text-lg">
+                <h2 class="text-3xl font-bold mb-2 text-navy-900">Revision Protocol & Final 30 Days</h2>
+                <p class="text-gray-600 mb-8 leading-relaxed text-lg">
                     Most forgotten material was never truly learned. Revision is built on <strong>retrieval</strong>,
                     not passive re-reading. Close the notes and try to reproduce the formula from memory.
                 </p>
 
-                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-stone-200 mb-10">
-                    <h3 class="text-xl font-bold text-stone-800 mb-4">The 1-Page Formula Sheets</h3>
-                    <p class="text-sm text-stone-600 mb-6">Build one page per subject. Make it yourself—the act of
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-200 mb-10">
+                    <h3 class="text-xl font-bold text-navy-900 mb-4">The 1-Page Formula Sheets</h3>
+                    <p class="text-sm text-gray-600 mb-6">Build one page per subject. Make it yourself—the act of
                         building it is half the learning. In the final week, revise ONLY from these 7 pages.</p>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                        <div class="p-4 bg-stone-50 rounded-lg border border-stone-100">
-                            <strong class="text-amber-700 block mb-1">Prob & Stats</strong>
+                        <div class="p-4 bg-navy-50 rounded-lg border border-navy-100">
+                            <strong class="text-navy-900 block mb-1">Prob & Stats</strong>
                             All 5 distributions (PMF, mean, var), Bayes, CLT, the 3 test statistics.
                         </div>
-                        <div class="p-4 bg-stone-50 rounded-lg border border-stone-100">
-                            <strong class="text-emerald-700 block mb-1">Machine Learning</strong>
+                        <div class="p-4 bg-navy-50 rounded-lg border border-navy-100">
+                            <strong class="text-navy-900 block mb-1">Machine Learning</strong>
                             1 line per algo (assumption/objective/use), metric formulas, bias-variance.
                         </div>
-                        <div class="p-4 bg-stone-50 rounded-lg border border-stone-100">
-                            <strong class="text-blue-700 block mb-1">Linear Algebra</strong>
+                        <div class="p-4 bg-navy-50 rounded-lg border border-navy-100">
+                            <strong class="text-navy-900 block mb-1">Linear Algebra</strong>
                             Eigenvalue shortcuts (trace/det), rank-nullity, SVD form, projection matrix.
                         </div>
-                        <div class="p-4 bg-stone-50 rounded-lg border border-stone-100">
-                            <strong class="text-indigo-700 block mb-1">Programming/DSA</strong>
+                        <div class="p-4 bg-navy-50 rounded-lg border border-navy-100">
+                            <strong class="text-navy-900 block mb-1">Programming/DSA</strong>
                             Big-O table, Python idioms, BFS/DFS traversal templates.
                         </div>
                     </div>
                 </div>
 
-                <h3 class="text-2xl font-bold text-stone-800 mb-4">The Last 30 Days (Tapering Phase)</h3>
-                <div class="border-l-2 border-stone-300 pl-6 space-y-6">
+                <h3 class="text-2xl font-bold text-navy-900 mb-4">The Last 30 Days (Tapering Phase)</h3>
+                <div class="border-l-2 border-gray-300 pl-6 space-y-6">
                     <div>
-                        <span class="text-xs font-bold text-stone-500 uppercase">Days 30 - 21</span>
-                        <h4 class="font-bold text-stone-800 text-lg">Heavy Mocks & Repair</h4>
-                        <p class="text-stone-600 text-sm">Full mocks (2-3/week) + same day analysis. Revise the weakest
+                        <span class="text-xs font-bold text-gray-500 uppercase">Days 30 - 21</span>
+                        <h4 class="font-bold text-navy-900 text-lg">Heavy Mocks & Repair</h4>
+                        <p class="text-gray-600 text-sm">Full mocks (2-3/week) + same day analysis. Revise the weakest
                             two subjects explicitly based on your error log.</p>
                     </div>
                     <div>
-                        <span class="text-xs font-bold text-stone-500 uppercase">Days 20 - 11</span>
-                        <h4 class="font-bold text-stone-800 text-lg">Speed & Polish</h4>
-                        <p class="text-stone-600 text-sm">Finish any remaining official PYQs. Daily GA practice. Tighten
+                        <span class="text-xs font-bold text-gray-500 uppercase">Days 20 - 11</span>
+                        <h4 class="font-bold text-navy-900 text-lg">Speed & Polish</h4>
+                        <p class="text-gray-600 text-sm">Finish any remaining official PYQs. Daily GA practice. Tighten
                             time strategy and virtual calculator speed.</p>
                     </div>
                     <div>
-                        <span class="text-xs font-bold text-stone-500 uppercase">Days 10 - 4</span>
-                        <h4 class="font-bold text-stone-800 text-lg">Pure Consolidation</h4>
-                        <p class="text-stone-600 text-sm">Taper mocks to 1-2. Revise purely from formula sheets and
-                            error log. No new topics. Fix logistics (ID, admit card).</p>
+                        <span class="text-xs font-bold text-gray-500 uppercase">Days 10 - 4</span>
+                        <h4 class="font-bold text-navy-900 text-lg">Pure Consolidation</h4>
+                        <p class="text-gray-600 text-sm">Taper mocks to 1-2. Revise purely from formula sheets and error
+                            log. No new topics. Fix logistics (ID, admit card).</p>
                     </div>
                     <div>
-                        <span class="text-xs font-bold text-amber-600 uppercase">Days 3 - 1</span>
-                        <h4 class="font-bold text-stone-800 text-lg">Calm & Rest</h4>
-                        <p class="text-stone-600 text-sm">Light revision only. Normal sleep schedule. Exam day
-                            rehearsal. Cramming now hurts memory consolidation.</p>
+                        <span class="text-xs font-bold text-gold-600 uppercase">Days 3 - 1</span>
+                        <h4 class="font-bold text-navy-900 text-lg">Calm & Rest</h4>
+                        <p class="text-gray-600 text-sm">Light revision only. Normal sleep schedule. Exam day rehearsal.
+                            Cramming now hurts memory consolidation.</p>
                     </div>
                 </div>
             </section>
 
             <section id="sec-faqs" class="max-w-3xl mx-auto hidden animate-fade-in">
-                <h2 class="text-3xl font-bold mb-2 text-stone-800">Mindset, Mistakes & FAQs</h2>
-                <p class="text-stone-600 mb-8 leading-relaxed text-lg">
+                <h2 class="text-3xl font-bold mb-2 text-navy-900">Mindset, Mistakes & FAQs</h2>
+                <p class="text-gray-600 mb-8 leading-relaxed text-lg">
                     The human side of an 8-month climb. Systems are what carry you when motivation inevitably dips.
                 </p>
 
-                <div class="bg-red-50 border border-red-100 rounded-xl p-6 mb-10">
+                <div class="bg-red-50 border border-red-200 rounded-xl p-6 mb-10">
                     <h3 class="text-xl font-bold text-red-800 mb-4 flex items-center">⚠️ Mistakes That Cost Ranks</h3>
                     <ul class="space-y-2 text-red-900 text-sm list-disc pl-5">
                         <li><strong>Learning ML before Math:</strong> ML becomes blind memorization without Probability
@@ -912,42 +973,41 @@
                     </ul>
                 </div>
 
-                <h3 class="text-2xl font-bold text-stone-800 mb-4">Frequently Asked Questions</h3>
+                <h3 class="text-2xl font-bold text-navy-900 mb-4">Frequently Asked Questions</h3>
                 <div class="space-y-4">
-
-                    <div class="bg-white border border-stone-200 rounded-lg overflow-hidden">
+                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
                         <button onclick="toggleAccordion('faq1')"
-                            class="w-full text-left px-6 py-4 font-bold text-stone-800 bg-stone-50 hover:bg-stone-100 focus:outline-none flex justify-between items-center">
+                            class="w-full text-left px-6 py-4 font-bold text-navy-900 bg-gray-50 hover:bg-gray-100 focus:outline-none flex justify-between items-center">
                             Can I really crack DA from scratch in 8 months at 2-3 hrs/day?
-                            <span id="icon-faq1" class="text-stone-400">▼</span>
+                            <span id="icon-faq1" class="text-gray-400">▼</span>
                         </button>
-                        <div id="faq1" class="accordion-content bg-white px-6 text-stone-600 text-sm">
+                        <div id="faq1" class="accordion-content bg-white px-6 text-gray-600 text-sm">
                             <p class="pb-4 pt-2">Yes—provided the hours are consistent and problem-focused. That budget
                                 is roughly 500+ hours, which is enough to cover the syllabus, practise it, and take
                                 10-15 mocks if you follow the maths-first sequence.</p>
                         </div>
                     </div>
 
-                    <div class="bg-white border border-stone-200 rounded-lg overflow-hidden">
+                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
                         <button onclick="toggleAccordion('faq2')"
-                            class="w-full text-left px-6 py-4 font-bold text-stone-800 bg-stone-50 hover:bg-stone-100 focus:outline-none flex justify-between items-center">
+                            class="w-full text-left px-6 py-4 font-bold text-navy-900 bg-gray-50 hover:bg-gray-100 focus:outline-none flex justify-between items-center">
                             Should I also attempt the GATE CS paper as a backup?
-                            <span id="icon-faq2" class="text-stone-400">▼</span>
+                            <span id="icon-faq2" class="text-gray-400">▼</span>
                         </button>
-                        <div id="faq2" class="accordion-content bg-white px-6 text-stone-600 text-sm">
+                        <div id="faq2" class="accordion-content bg-white px-6 text-gray-600 text-sm">
                             <p class="pb-4 pt-2">For an AI/DS student, sticking to DA-only is the right call. Splitting
                                 your 2-3 hours across two very different syllabi (CS requires OS, Compilers, Networks)
                                 weakens both. Go deep on DA.</p>
                         </div>
                     </div>
 
-                    <div class="bg-white border border-stone-200 rounded-lg overflow-hidden">
+                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
                         <button onclick="toggleAccordion('faq3')"
-                            class="w-full text-left px-6 py-4 font-bold text-stone-800 bg-stone-50 hover:bg-stone-100 focus:outline-none flex justify-between items-center">
+                            class="w-full text-left px-6 py-4 font-bold text-navy-900 bg-gray-50 hover:bg-gray-100 focus:outline-none flex justify-between items-center">
                             Do I need paid coaching or test series?
-                            <span id="icon-faq3" class="text-stone-400">▼</span>
+                            <span id="icon-faq3" class="text-gray-400">▼</span>
                         </button>
-                        <div id="faq3" class="accordion-content bg-white px-6 text-stone-600 text-sm">
+                        <div id="faq3" class="accordion-content bg-white px-6 text-gray-600 text-sm">
                             <p class="pb-4 pt-2">No. This guide is built entirely on free resources (NPTEL, MIT OCW,
                                 StatQuest, ISLR, GATE Overflow). Discipline matters far more than any paid course.
                                 However, purchasing one good test series in Jan for the UI simulation can be helpful,
@@ -955,33 +1015,32 @@
                         </div>
                     </div>
 
-                    <div class="bg-white border border-stone-200 rounded-lg overflow-hidden">
+                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
                         <button onclick="toggleAccordion('faq4')"
-                            class="w-full text-left px-6 py-4 font-bold text-stone-800 bg-stone-50 hover:bg-stone-100 focus:outline-none flex justify-between items-center">
+                            class="w-full text-left px-6 py-4 font-bold text-navy-900 bg-gray-50 hover:bg-gray-100 focus:outline-none flex justify-between items-center">
                             What if my college exams clash with the plan?
-                            <span id="icon-faq4" class="text-stone-400">▼</span>
+                            <span id="icon-faq4" class="text-gray-400">▼</span>
                         </button>
-                        <div id="faq4" class="accordion-content bg-white px-6 text-stone-600 text-sm">
+                        <div id="faq4" class="accordion-content bg-white px-6 text-gray-600 text-sm">
                             <p class="pb-4 pt-2">Shift the monthly themes by a week or two, and during exam crunches
                                 drop to a 45-minute maintenance session rather than stopping entirely. Keeping the habit
                                 unbroken matters more than the exact hours.</p>
                         </div>
                     </div>
-
                 </div>
             </section>
 
             <section id="sec-tools" class="max-w-4xl mx-auto hidden animate-fade-in">
-                <h2 class="text-3xl font-bold mb-2 text-stone-800">Interactive Trackers</h2>
-                <p class="text-stone-600 mb-8 leading-relaxed text-lg">
+                <h2 class="text-3xl font-bold mb-2 text-navy-900">Interactive Trackers</h2>
+                <p class="text-gray-600 mb-8 leading-relaxed text-lg">
                     Your progress is saved locally to your browser. Use this checklist as your final audit before
                     February.
                 </p>
 
-                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-stone-200 mb-10">
-                    <h3 class="text-xl font-bold text-stone-800 mb-4 border-b border-stone-100 pb-2">Quick Revision
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-200 mb-10">
+                    <h3 class="text-xl font-bold text-navy-900 mb-4 border-b border-gray-100 pb-2">Quick Revision
                         Checklist</h3>
-                    <p class="text-sm text-stone-500 mb-6">If you can honestly check every box by late January, you are
+                    <p class="text-sm text-gray-500 mb-6">If you can honestly check every box by late January, you are
                         exam-ready.</p>
 
                     <div class="space-y-4" id="checklist-container">
@@ -989,68 +1048,67 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
-                    <div class="flex justify-between items-center mb-4 border-b border-stone-100 pb-2">
-                        <h3 class="text-xl font-bold text-stone-800">Weekly Habit Tracker</h3>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-2">
+                        <h3 class="text-xl font-bold text-navy-900">Weekly Habit Tracker</h3>
                         <button onclick="printTracker()"
-                            class="text-sm text-blue-600 hover:text-blue-800 font-semibold">🖨️ Print Empty</button>
+                            class="text-sm text-navy-600 hover:text-gold-600 font-semibold">🖨️ Print Empty</button>
                     </div>
-                    <p class="text-sm text-stone-600 mb-4">Print this and keep it on your desk. Fill the topic, tick
-                        when problems are done, and log the main mistake. An unbroken column of ticks is your streak.
-                    </p>
+                    <p class="text-sm text-gray-600 mb-4">Print this and keep it on your desk. Fill the topic, tick when
+                        problems are done, and log the main mistake. An unbroken column of ticks is your streak.</p>
 
                     <div class="overflow-x-auto print-area">
-                        <table class="w-full text-sm text-left border-collapse border border-stone-300">
-                            <thead class="bg-stone-100">
+                        <table class="w-full text-sm text-left border-collapse border border-gray-300">
+                            <thead class="bg-navy-50 text-navy-900">
                                 <tr>
-                                    <th class="p-2 border border-stone-300 w-16">Day</th>
-                                    <th class="p-2 border border-stone-300 w-48">Topic Studied</th>
-                                    <th class="p-2 border border-stone-300 w-20 text-center">Done?</th>
-                                    <th class="p-2 border border-stone-300">Main Mistake Logged</th>
+                                    <th class="p-2 border border-gray-300 w-16">Day</th>
+                                    <th class="p-2 border border-gray-300 w-48">Topic Studied</th>
+                                    <th class="p-2 border border-gray-300 w-20 text-center">Done?</th>
+                                    <th class="p-2 border border-gray-300">Main Mistake Logged</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="p-3 border border-stone-300 font-medium">Mon</td>
-                                    <td class="border border-stone-300"></td>
-                                    <td class="border border-stone-300"></td>
-                                    <td class="border border-stone-300"></td>
+                                    <td class="p-3 border border-gray-300 font-medium">Mon</td>
+                                    <td class="border border-gray-300"></td>
+                                    <td class="border border-gray-300"></td>
+                                    <td class="border border-gray-300"></td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3 border border-stone-300 font-medium">Tue</td>
-                                    <td class="border border-stone-300"></td>
-                                    <td class="border border-stone-300"></td>
-                                    <td class="border border-stone-300"></td>
+                                    <td class="p-3 border border-gray-300 font-medium">Tue</td>
+                                    <td class="border border-gray-300"></td>
+                                    <td class="border border-gray-300"></td>
+                                    <td class="border border-gray-300"></td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3 border border-stone-300 font-medium">Wed</td>
-                                    <td class="border border-stone-300"></td>
-                                    <td class="border border-stone-300"></td>
-                                    <td class="border border-stone-300"></td>
+                                    <td class="p-3 border border-gray-300 font-medium">Wed</td>
+                                    <td class="border border-gray-300"></td>
+                                    <td class="border border-gray-300"></td>
+                                    <td class="border border-gray-300"></td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3 border border-stone-300 font-medium">Thu</td>
-                                    <td class="border border-stone-300"></td>
-                                    <td class="border border-stone-300"></td>
-                                    <td class="border border-stone-300"></td>
+                                    <td class="p-3 border border-gray-300 font-medium">Thu</td>
+                                    <td class="border border-gray-300"></td>
+                                    <td class="border border-gray-300"></td>
+                                    <td class="border border-gray-300"></td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3 border border-stone-300 font-medium">Fri</td>
-                                    <td class="border border-stone-300"></td>
-                                    <td class="border border-stone-300"></td>
-                                    <td class="border border-stone-300"></td>
+                                    <td class="p-3 border border-gray-300 font-medium">Fri</td>
+                                    <td class="border border-gray-300"></td>
+                                    <td class="border border-gray-300"></td>
+                                    <td class="border border-gray-300"></td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3 border border-stone-300 font-medium text-amber-700">Sat</td>
-                                    <td class="border border-stone-300 bg-stone-50"></td>
-                                    <td class="border border-stone-300 bg-stone-50"></td>
-                                    <td class="border border-stone-300 bg-stone-50"></td>
+                                    <td class="p-3 border border-gray-300 font-bold text-gold-600">Sat</td>
+                                    <td class="border border-gray-300 bg-gold-50"></td>
+                                    <td class="border border-gray-300 bg-gold-50"></td>
+                                    <td class="border border-gray-300 bg-gold-50"></td>
                                 </tr>
                                 <tr>
-                                    <td class="p-3 border border-stone-300 font-medium text-stone-400">Sun</td>
-                                    <td class="border border-stone-300"></td>
-                                    <td class="border border-stone-300"></td>
-                                    <td class="border border-stone-300"></td>
+                                    <td class="p-3 border border-gray-300 font-medium text-gray-400">Sun</td>
+                                    <td class="border border-gray-300"></td>
+                                    <td class="border border-gray-300"></td>
+                                    <td class="border border-gray-300"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1059,34 +1117,33 @@
             </section>
 
             <section id="sec-cutoffs" class="max-w-5xl mx-auto hidden animate-fade-in">
-                <h2 class="text-3xl font-bold mb-4 text-stone-800">Target Score & Cutoff Analysis</h2>
-                <p class="text-stone-600 mb-8 leading-relaxed">
+                <h2 class="text-3xl font-bold mb-4 text-navy-900">Target Score & Cutoff Analysis</h2>
+                <p class="text-gray-600 mb-8 leading-relaxed">
                     To secure an M.Tech DA seat via COAP at IIT Madras, you must aim for these historical cutoff scores
                     (out of 1000). The chart allows you to visualize the competitive landscape based on your category.
                 </p>
 
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mb-8">
                     <div class="chart-container">
                         <canvas id="cutoffChart"></canvas>
                     </div>
                 </div>
 
-                <div class="bg-stone-50 border border-stone-200 p-6 rounded-lg">
-                    <h3 class="font-bold text-lg mb-3">Translation: Marks vs. Rank</h3>
-                    <p class="text-sm text-stone-600 mb-4">GATE Score (out of 1000) is normalized. To achieve a
+                <div class="bg-navy-50 border border-navy-100 p-6 rounded-lg">
+                    <h3 class="font-bold text-lg mb-3 text-navy-900">Translation: Marks vs. Rank</h3>
+                    <p class="text-sm text-gray-600 mb-4">GATE Score (out of 1000) is normalized. To achieve a
                         <strong>Score of ~860</strong> (General Category cutoff), here are your raw targets:</p>
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-white p-4 rounded border border-stone-200 text-center">
-                            <span class="block text-2xl font-bold text-amber-600">72 - 78</span>
-                            <span class="text-xs text-stone-500 uppercase tracking-wide">Target Marks (out of
-                                100)</span>
+                        <div class="bg-white p-4 rounded border border-gray-200 text-center">
+                            <span class="block text-2xl font-bold text-gold-500">72 - 78</span>
+                            <span class="text-xs text-navy-800 uppercase tracking-wide">Target Marks (out of 100)</span>
                         </div>
-                        <div class="bg-white p-4 rounded border border-stone-200 text-center">
-                            <span class="block text-2xl font-bold text-blue-600">Top 150</span>
-                            <span class="text-xs text-stone-500 uppercase tracking-wide">All India Rank (AIR)</span>
+                        <div class="bg-white p-4 rounded border border-gray-200 text-center">
+                            <span class="block text-2xl font-bold text-navy-900">Top 150</span>
+                            <span class="text-xs text-navy-800 uppercase tracking-wide">All India Rank (AIR)</span>
                         </div>
                     </div>
-                    <p class="text-sm text-stone-700 mt-4 font-semibold border-l-4 border-blue-500 pl-3">The M.S.
+                    <p class="text-sm text-gray-700 mt-4 font-semibold border-l-4 border-gold-500 pl-3">The M.S.
                         Research Pivot: If your rank falls between 150 and 800 (Score ~650+), pivot immediately to
                         applying for the M.S. (by Research) program on the IITM portal, which leverages a campus
                         interview over raw rank.</p>
@@ -1094,85 +1151,104 @@
             </section>
 
             <section id="sec-author" class="max-w-4xl mx-auto hidden animate-fade-in">
-                <h2 class="text-3xl font-bold mb-6 text-stone-800">About the Author</h2>
+                <h2 class="text-3xl font-bold mb-6 text-navy-900">About the Author</h2>
 
-                <div class="bg-white rounded-2xl shadow-lg border border-stone-200 overflow-hidden">
-                    <div class="bg-stone-900 text-white p-8 relative">
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                    <div class="bg-navy-800 text-white p-8 md:p-12 relative overflow-hidden">
                         <div
-                            class="absolute top-0 right-0 w-32 h-32 bg-amber-600 rounded-full opacity-20 blur-2xl -mr-10 -mt-10">
+                            class="absolute top-0 right-0 w-64 h-64 bg-gold-500 rounded-full opacity-10 blur-3xl -mr-10 -mt-10">
                         </div>
-                        <h3 class="text-3xl font-black mb-1">BALAVIGNESHWAR T G</h3>
-                        <p class="text-amber-500 font-medium tracking-wide">Multimodal AI Architect | Prompt Engineer |
-                            Neuro-Symbolic AI Designer</p>
-                        <p class="text-stone-400 text-sm mt-3 italic">"You master tools. I master Architectures that
-                            rewire cognition."</p>
+
+                        <div class="flex flex-col md:flex-row items-center md:items-start gap-8 relative z-10">
+                            <!-- Direct integration of user Google Drive Image -->
+                            <img src="Win.jpg"
+                                alt="Balavigneshwar T G"
+                                onerror="this.src='https://ui-avatars.com/api/?name=Balavigneshwar+TG&background=C59B3F&color=fff&size=200'"
+                                class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-gold-500 object-cover shadow-2xl bg-navy-900 flex-shrink-0">
+
+                            <div class="text-center md:text-left">
+                                <h3 class="text-3xl md:text-4xl font-black mb-2">BALAVIGNESHWAR T G</h3>
+                                <p class="text-gold-500 font-semibold tracking-wide text-lg">Multimodal AI Architect |
+                                    Prompt Engineer | Neuro-Symbolic AI Designer</p>
+                                <p class="text-gray-300 text-sm mt-3 italic max-w-xl leading-relaxed">"You master tools.
+                                    I master Architectures that rewire cognition."</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="p-8">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            <div class="md:col-span-2 space-y-6">
+                    <div class="p-8 md:p-12">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                            <div class="md:col-span-2 space-y-8">
                                 <div>
-                                    <h4 class="text-lg font-bold text-stone-800 mb-2 border-b border-stone-100 pb-2">
+                                    <h4
+                                        class="text-xl font-bold text-navy-900 mb-3 border-b-2 border-gold-500 inline-block pb-1">
                                         Professional Summary</h4>
-                                    <p class="text-stone-600 text-sm leading-relaxed">
+                                    <p class="text-gray-600 text-sm leading-relaxed mt-2">
                                         I specialize in Multimodal Architectures, Prompt Engineering, and Neuro-Symbolic
                                         AI, operating at the junction where logic fuses with perception. I am currently
                                         architecting advanced cognitive systems, including an ASI-grade self-learning
-                                        LLM powered by logic-perception fusion under my command structure, Z.E.T.A.
+                                        LLM powered by logic-perception fusion under my command structure, Z.E.R.O.
                                     </p>
                                 </div>
 
                                 <div>
-                                    <h4 class="text-lg font-bold text-stone-800 mb-2 border-b border-stone-100 pb-2">
+                                    <h4
+                                        class="text-xl font-bold text-navy-900 mb-3 border-b-2 border-gold-500 inline-block pb-1">
                                         Current Trajectory</h4>
-                                    <ul class="space-y-3 text-sm text-stone-600">
-                                        <li class="flex items-start"><span class="text-amber-600 mr-2">🚀</span>
-                                            <strong>Founder of Z.E.T.A. & TEAM o7 Academy:</strong> Designing prompt
-                                            architectures, recursive cognition modules, and building execution-driven
-                                            educational ecosystems.</li>
-                                        <li class="flex items-start"><span class="text-blue-600 mr-2">💼</span>
-                                            <strong>AI Product Development Lead @ Kronnex:</strong> Leading AI Systems
-                                            and Cognitive Architecture.</li>
-                                        <li class="flex items-start"><span class="text-emerald-600 mr-2">🛠️</span>
-                                            <strong>AI & 3D Systems Engineer @ Tech iera:</strong> Building AI-driven 3D
-                                            architectures and Intelligent Digital Twin systems inside Unreal Engine.
+                                    <ul class="space-y-4 text-sm text-gray-600 mt-2">
+                                        <li class="flex items-start bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                            <span class="text-gold-600 mr-3 text-lg">🚀</span>
+                                            <div><strong>Founder of Z.E.T.A. & TEAM o7 Academy:</strong> Designing
+                                                prompt architectures, recursive cognition modules, and building
+                                                execution-driven educational ecosystems.</div>
+                                        </li>
+                                        <li class="flex items-start bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                            <span class="text-navy-600 mr-3 text-lg">💼</span>
+                                            <div><strong>AI Product Development Lead @ Kronnex:</strong> Leading AI
+                                                Systems and Cognitive Architecture.</div>
+                                        </li>
+                                        <li class="flex items-start bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                            <span class="text-green-600 mr-3 text-lg">🛠️</span>
+                                            <div><strong>AI & 3D Systems Engineer @ Tech iera:</strong> Building
+                                                AI-driven 3D architectures and Intelligent Digital Twin systems inside
+                                                Unreal Engine.</div>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
 
-                            <div class="space-y-6 bg-stone-50 p-6 rounded-xl border border-stone-100">
+                            <div class="space-y-8 bg-navy-50 p-8 rounded-2xl border border-navy-100">
                                 <div>
-                                    <h4 class="font-bold text-stone-800 text-sm uppercase tracking-wide mb-2">Education
+                                    <h4 class="font-bold text-navy-900 text-xs uppercase tracking-widest mb-2">Education
                                     </h4>
-                                    <p class="text-sm text-stone-600 font-semibold">Indian Institute of Technology,
-                                        Madras</p>
-                                    <p class="text-xs text-stone-500">BS, Data Science and Application</p>
+                                    <p class="text-sm text-navy-800 font-bold">Indian Institute of Technology, Madras
+                                    </p>
+                                    <p class="text-xs text-gray-500 mt-1">BS, Data Science and Application</p>
                                 </div>
 
                                 <div>
-                                    <h4 class="font-bold text-stone-800 text-sm uppercase tracking-wide mb-2">
+                                    <h4 class="font-bold text-navy-900 text-xs uppercase tracking-widest mb-2">
                                         Certifications</h4>
-                                    <p class="text-sm text-stone-600"><strong>50+ Global Certifications</strong></p>
-                                    <p class="text-xs text-stone-500 mt-1">Verified badges from Google, AWS, Microsoft,
-                                        IBM, Meta, Cisco, Oracle, and DeepLearning.AI.</p>
+                                    <p class="text-sm text-navy-800 font-bold">50+ Global Certifications</p>
+                                    <p class="text-xs text-gray-500 mt-1 leading-relaxed">Verified badges from Google,
+                                        AWS, Microsoft, IBM, Meta, Cisco, Oracle, and DeepLearning.AI.</p>
                                 </div>
 
                                 <div>
-                                    <h4 class="font-bold text-stone-800 text-sm uppercase tracking-wide mb-2">Connect
+                                    <h4 class="font-bold text-navy-900 text-xs uppercase tracking-widest mb-3">Connect
                                     </h4>
-                                    <div class="space-y-2">
+                                    <div class="space-y-3">
                                         <a href="https://www.linkedin.com/in/balavigneshwar-t-g/" target="_blank"
-                                            class="flex items-center text-sm font-medium text-[#0a66c2] hover:underline">
-                                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                            class="flex items-center text-sm font-semibold text-[#0a66c2] hover:underline bg-white p-2 rounded shadow-sm border border-gray-200">
+                                            <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
                                                 <path
                                                     d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                                             </svg>
                                             LinkedIn Profile
                                         </a>
                                         <a href="https://github.com/BALAVIGNESHWARTG" target="_blank"
-                                            class="flex items-center text-sm font-medium text-stone-800 hover:underline">
-                                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                            class="flex items-center text-sm font-semibold text-navy-900 hover:underline bg-white p-2 rounded shadow-sm border border-gray-200">
+                                            <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
                                                 <path
                                                     d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                                             </svg>
@@ -1188,32 +1264,32 @@
 
             <section id="sec-assistant"
                 class="max-w-4xl mx-auto hidden animate-fade-in flex flex-col h-[calc(100vh-160px)] md:h-[calc(100vh-180px)]">
-                <h2 class="text-3xl font-bold mb-2 text-stone-800 flex-shrink-0">AI Study Assistant</h2>
-                <p class="text-stone-600 mb-4 leading-relaxed text-sm flex-shrink-0">
+                <h2 class="text-3xl font-bold mb-2 text-navy-900 flex-shrink-0">AI Study Assistant</h2>
+                <p class="text-gray-600 mb-4 leading-relaxed text-sm flex-shrink-0">
                     Stuck on a concept? Ask the Zeta Research AI Assistant. Powered by Gemini, trained on the GATE DA
                     syllabus.
                 </p>
 
-                <div class="flex-1 bg-white border border-stone-200 rounded-xl shadow-sm flex flex-col overflow-hidden">
+                <div class="flex-1 bg-white border border-gray-200 rounded-xl shadow-sm flex flex-col overflow-hidden">
                     <div id="chat-history"
-                        class="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 bg-stone-50 custom-scrollbar">
+                        class="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 bg-gray-50 custom-scrollbar">
                         <div class="flex justify-start">
                             <div
-                                class="bg-white border border-stone-200 rounded-lg rounded-tl-none p-4 max-w-[85%] shadow-sm">
-                                <p class="text-sm text-stone-800">Hello! I am your GATE DA AI tutor. What topic are we
+                                class="bg-white border border-gray-200 rounded-lg rounded-tl-none p-4 max-w-[85%] shadow-sm">
+                                <p class="text-sm text-navy-900">Hello! I am your GATE DA AI tutor. What topic are we
                                     tackling today? Ask me to explain Eigenvectors, detail how Random Forests work, or
                                     write a Python snippet for BFS.</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="p-3 md:p-4 bg-white border-t border-stone-200 flex-shrink-0">
+                    <div class="p-3 md:p-4 bg-white border-t border-gray-200 flex-shrink-0">
                         <div class="flex space-x-2 md:space-x-3">
                             <input type="text" id="chat-input" placeholder="Ask a GATE DA concept..."
-                                class="flex-1 px-4 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm"
+                                class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent text-sm"
                                 onkeypress="if(event.key === 'Enter') sendChatMessage()">
                             <button onclick="sendChatMessage()" id="send-btn"
-                                class="bg-amber-700 hover:bg-amber-800 text-white px-4 md:px-6 py-2 rounded-lg font-medium transition duration-200 flex items-center justify-center min-w-[80px] md:min-w-[100px]">
+                                class="bg-navy-800 hover:bg-navy-700 text-white px-4 md:px-6 py-2 rounded-lg font-medium transition duration-200 flex items-center justify-center min-w-[80px] md:min-w-[100px]">
                                 <span>Send</span>
                             </button>
                         </div>
@@ -1221,8 +1297,8 @@
                 </div>
             </section>
 
-            <footer class="mt-16 pt-8 border-t border-stone-200 text-center text-stone-400 text-xs pb-6">
-                <p class="font-bold">ZETA RESEARCH</p>
+            <footer class="mt-16 pt-8 border-t border-gray-200 text-center text-gray-400 text-xs pb-6">
+                <p class="font-bold text-navy-800 tracking-widest">0G | ZETA RESEARCH</p>
                 <p class="mt-1">Compiled & Written by Balavigneshwar T G © 2026</p>
                 <p class="mt-1">An independent study compilation for IIT Madras GATE 2027 DA Preparation.</p>
             </footer>
@@ -1231,21 +1307,21 @@
     </div>
 
     <div id="custom-modal"
-        class="fixed inset-0 bg-stone-900 bg-opacity-60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity">
+        class="fixed inset-0 bg-navy-900 bg-opacity-80 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity">
         <div
-            class="bg-white rounded-2xl shadow-2xl max-w-lg w-full flex flex-col max-h-[85vh] relative overflow-hidden">
-            <div class="bg-stone-50 border-b border-stone-200 p-5 flex justify-between items-center sticky top-0 z-10">
-                <h3 id="modal-title" class="text-xl font-bold text-stone-900 pr-6">Title</h3>
+            class="bg-white rounded-2xl shadow-2xl max-w-lg w-full flex flex-col max-h-[85vh] relative overflow-hidden border-t-4 border-gold-500">
+            <div class="bg-navy-50 border-b border-gray-200 p-5 flex justify-between items-center sticky top-0 z-10">
+                <h3 id="modal-title" class="text-xl font-bold text-navy-900 pr-6">Title</h3>
                 <button onclick="closeModal()"
-                    class="text-stone-400 hover:text-stone-700 text-3xl leading-none focus:outline-none">&times;</button>
+                    class="text-gray-400 hover:text-navy-900 text-3xl leading-none focus:outline-none transition">&times;</button>
             </div>
             <div id="modal-content"
-                class="p-6 overflow-y-auto custom-scrollbar text-stone-700 text-sm leading-relaxed space-y-4">
+                class="p-6 overflow-y-auto main-scrollbar text-gray-700 text-sm leading-relaxed space-y-4">
                 <!-- Content injected via JS -->
             </div>
-            <div class="p-4 border-t border-stone-200 bg-stone-50 flex justify-end sticky bottom-0">
+            <div class="p-4 border-t border-gray-200 bg-gray-50 flex justify-end sticky bottom-0">
                 <button onclick="closeModal()"
-                    class="bg-stone-200 hover:bg-stone-300 text-stone-800 px-6 py-2 rounded-lg font-bold transition">Close</button>
+                    class="bg-navy-800 hover:bg-navy-700 text-white px-6 py-2 rounded-lg font-bold transition">Close</button>
             </div>
         </div>
     </div>
@@ -1261,7 +1337,7 @@
             'ml': {
                 title: "Machine Learning (21%)",
                 content: `
-                    <p class="font-bold text-emerald-700 mb-2">The highest-weighted core subject. Your home turf.</p>
+                    <p class="font-bold text-navy-800 mb-2 border-b border-gold-500 inline-block pb-1">The highest-weighted core subject. Your home turf.</p>
                     <p><strong>Official Topics:</strong> Regression (linear, ridge), Logistic regression, KNN, Naive Bayes, SVM, Decision Trees. MLE, Bias-variance trade-off, Regularization, Cross-validation, Metrics (accuracy, F1, ROC). Unsupervised (K-means, Hierarchical, PCA). Basic neural networks.</p>
                     <p class="mt-3"><strong>Hot Topics:</strong> Bias-variance trade-off, MLE, logistic/SVM intuition, PCA (linked to SVD), and evaluation metrics.</p>
                     <p class="mt-3"><strong>How to study it:</strong> Learn the assumptions, objective, training, and failure modes for EACH algorithm. Connect ML constantly to math (PCA = Eigenvectors). Work small numericals by hand (tiny KNN, 2-point regression).</p>`
@@ -1269,7 +1345,7 @@
             'prob': {
                 title: "Probability & Statistics (19%)",
                 content: `
-                    <p class="font-bold text-amber-700 mb-2">The mathematical spine of all data science.</p>
+                    <p class="font-bold text-navy-800 mb-2 border-b border-gold-500 inline-block pb-1">The mathematical spine of all data science.</p>
                     <p><strong>Official Topics:</strong> Probability axioms, Bayes' theorem. Random variables, PMF/PDF. Distributions (Uniform, Bernoulli, Binomial, Poisson, Normal, Exponential, t, Chi-squared). Mean, variance, correlation, covariance. CLT, Hypothesis testing (z, t, chi-squared).</p>
                     <p class="mt-3"><strong>Hot Topics:</strong> Bayes' theorem, CLT, the 'big five' distributions, and hypothesis testing.</p>
                     <p class="mt-3"><strong>How to study it:</strong> Master the 'big five' distributions (formula, mean, var). Bayes appears yearly, often inside an ML question. Drill hypothesis testing—pick the right test, compute stat, state conclusion. Keep a 1-page formula sheet.</p>`
@@ -1277,7 +1353,7 @@
             'la': {
                 title: "Linear Algebra (13%)",
                 content: `
-                    <p class="font-bold text-blue-700 mb-2">The hidden language beneath Machine Learning.</p>
+                    <p class="font-bold text-navy-800 mb-2 border-b border-gold-500 inline-block pb-1">The hidden language beneath Machine Learning.</p>
                     <p><strong>Official Topics:</strong> Vector spaces, linear dependence. Matrices (projection, orthogonal). Systems of equations, Gaussian elimination. Determinant, rank, nullity. Eigenvalues, eigenvectors. LU decomposition, SVD.</p>
                     <p class="mt-3"><strong>Hot Topics:</strong> SVD, Eigenvalues/vectors, Rank & Nullity, Projection matrices.</p>
                     <p class="mt-3"><strong>How to study it:</strong> SVD is the most important topic. Drill 2x2 and 3x3 eigen problems and learn shortcuts (trace=sum, det=prod). Learn projection matrix in least-squares context.</p>`
@@ -1285,7 +1361,7 @@
             'ai': {
                 title: "Artificial Intelligence (11%)",
                 content: `
-                    <p class="font-bold text-rose-700 mb-2">Conceptually rich, unique to the DA paper.</p>
+                    <p class="font-bold text-navy-800 mb-2 border-b border-gold-500 inline-block pb-1">Conceptually rich, unique to the DA paper.</p>
                     <p><strong>Official Topics:</strong> Search (BFS, DFS, A* admissibility/consistency). Adversarial (Minimax, alpha-beta pruning). Logic (Propositional, First-order). Reasoning under uncertainty, Bayesian networks, exact/approx inference.</p>
                     <p class="mt-3"><strong>Hot Topics:</strong> A* admissibility/consistency, minimax with pruning, variable elimination.</p>
                     <p class="mt-3"><strong>How to study it:</strong> Trace A* and Minimax on small graphs manually until mechanical. Tie Bayesian networks directly back to Probability.</p>`
@@ -1293,7 +1369,7 @@
             'calc': {
                 title: "Calculus & Optimization (10%)",
                 content: `
-                    <p class="font-bold text-teal-700 mb-2">The theory behind model training.</p>
+                    <p class="font-bold text-navy-800 mb-2 border-b border-gold-500 inline-block pb-1">The theory behind model training.</p>
                     <p><strong>Official Topics:</strong> Single variable functions, limits, continuity, differentiability. Taylor series. Maxima/minima. Gradients and role in optimization. Convexity.</p>
                     <p class="mt-3"><strong>Hot Topics:</strong> Maxima/minima problems, Taylor expansions, gradient intuition.</p>
                     <p class="mt-3"><strong>How to study it:</strong> Tie concepts to ML (gradient is what gradient descent follows). Practice first/second derivative tests. Do not over-study this section; keep it tight.</p>`
@@ -1301,7 +1377,7 @@
             'prog': {
                 title: "Programming & DSA (Python) (10%)",
                 content: `
-                    <p class="font-bold text-indigo-700 mb-2">Speed and precision under exam conditions.</p>
+                    <p class="font-bold text-navy-800 mb-2 border-b border-gold-500 inline-block pb-1">Speed and precision under exam conditions.</p>
                     <p><strong>Official Topics:</strong> Python syntax, structures. Stacks, queues, linked lists, trees, hash tables. Graph traversal (BFS, DFS). Sorting/searching. Big-O notation.</p>
                     <p class="mt-3"><strong>Hot Topics:</strong> Code-tracing/output prediction in Python, complexity analysis.</p>
                     <p class="mt-3"><strong>How to study it:</strong> Practice reading Python code—DA loves trace questions. Memorize Big-O complexity table. Solve easy/medium Leetcode in Python to build speed.</p>`
@@ -1309,7 +1385,7 @@
             'dbms': {
                 title: "Database Management (8%)",
                 content: `
-                    <p class="font-bold text-slate-700 mb-2">Finite syllabus, high return on effort.</p>
+                    <p class="font-bold text-navy-800 mb-2 border-b border-gold-500 inline-block pb-1">Finite syllabus, high return on effort.</p>
                     <p><strong>Official Topics:</strong> ER model, relational algebra. SQL queries. Integrity constraints. Normalization (1NF to BCNF), Functional dependencies. Data warehousing basics.</p>
                     <p class="mt-3"><strong>Hot Topics:</strong> SQL query reading/writing, Normalization to target form, FD rules.</p>
                     <p class="mt-3"><strong>How to study it:</strong> Get fluent at SQL—practice on real queries. Master normalization (decompose relation to 3NF/BCNF and justify). Learn relational algebra translation.</p>`
@@ -1317,7 +1393,7 @@
             'ga': {
                 title: "General Aptitude (15%)",
                 content: `
-                    <p class="font-bold text-purple-700 mb-2">Free marks. Refuse to lose them.</p>
+                    <p class="font-bold text-navy-800 mb-2 border-b border-gold-500 inline-block pb-1">Free marks. Refuse to lose them.</p>
                     <p><strong>Official Topics:</strong> Verbal ability, Quantitative aptitude, Analytical & spatial reasoning.</p>
                     <p class="mt-3"><strong>How to study it:</strong> Do not study GA from July. Solve 10-15 questions a few times a week from November onward. Aim to finish all 15 marks in under 20 minutes in the real exam.</p>`
             }
@@ -1345,9 +1421,9 @@
             checklistItems.forEach(item => {
                 const isChecked = localStorage.getItem(item.id) === 'true';
                 container.innerHTML += `
-                    <label class="flex items-start space-x-3 p-3 bg-stone-50 rounded-lg border border-stone-100 hover:bg-stone-100 cursor-pointer transition">
-                        <input type="checkbox" id="${item.id}" onchange="saveChecklist('${item.id}')" ${isChecked ? 'checked' : ''} class="mt-1 w-5 h-5 text-amber-600 rounded border-stone-300 focus:ring-amber-500">
-                        <span class="text-sm text-stone-700 ${isChecked ? 'line-through text-stone-400' : ''}" id="text_${item.id}">${item.text}</span>
+                    <label class="flex items-start space-x-3 p-3 bg-white rounded-lg border border-gray-200 hover:bg-navy-50 hover:border-gold-300 cursor-pointer transition">
+                        <input type="checkbox" id="${item.id}" onchange="saveChecklist('${item.id}')" ${isChecked ? 'checked' : ''} class="mt-1 w-5 h-5 text-gold-500 rounded border-gray-300 focus:ring-gold-500 accent-gold-500">
+                        <span class="text-sm font-medium text-navy-900 ${isChecked ? 'line-through text-gray-400 font-normal' : ''}" id="text_${item.id}">${item.text}</span>
                     </label>
                 `;
             });
@@ -1358,9 +1434,11 @@
             const textSpan = document.getElementById('text_' + id);
             localStorage.setItem(id, checkbox.checked);
             if (checkbox.checked) {
-                textSpan.classList.add('line-through', 'text-stone-400');
+                textSpan.classList.add('line-through', 'text-gray-400', 'font-normal');
+                textSpan.classList.remove('text-navy-900', 'font-medium');
             } else {
-                textSpan.classList.remove('line-through', 'text-stone-400');
+                textSpan.classList.remove('line-through', 'text-gray-400', 'font-normal');
+                textSpan.classList.add('text-navy-900', 'font-medium');
             }
         }
 
@@ -1380,24 +1458,22 @@
         function nav(targetId) {
             sections.forEach(sec => {
                 document.getElementById('sec-' + sec).classList.add('hidden');
-                document.getElementById('nav-' + sec).classList.remove('nav-active');
+                let el = document.getElementById('nav-' + sec);
+                el.classList.remove('nav-active');
+                el.classList.add('nav-inactive');
             });
             document.getElementById('sec-' + targetId).classList.remove('hidden');
-            document.getElementById('nav-' + targetId).classList.add('nav-active');
+            let targetEl = document.getElementById('nav-' + targetId);
+            targetEl.classList.remove('nav-inactive');
+            targetEl.classList.add('nav-active');
 
             if (window.innerWidth < 768) {
                 toggleSidebar();
             }
 
-            if (targetId === 'syllabus' && !weightageChartInstance) {
-                renderWeightageChart();
-            }
-            if (targetId === 'cutoffs' && !cutoffChartInstance) {
-                renderCutoffChart();
-            }
-            if (targetId === 'tools') {
-                renderChecklist();
-            }
+            if (targetId === 'syllabus' && !weightageChartInstance) renderWeightageChart();
+            if (targetId === 'cutoffs' && !cutoffChartInstance) renderCutoffChart();
+            if (targetId === 'tools') renderChecklist();
 
             document.querySelector('main').scrollTop = 0;
         }
@@ -1411,12 +1487,12 @@
             const tabs = ['math', 'ml', 'sys', 'prac'];
             tabs.forEach(t => {
                 document.getElementById('tab-' + t).classList.add('hidden');
-                document.getElementById('tab-btn-' + t).classList.remove('tab-active', 'text-stone-800');
-                document.getElementById('tab-btn-' + t).classList.add('text-stone-500');
+                document.getElementById('tab-btn-' + t).classList.remove('tab-active', 'text-navy-900');
+                document.getElementById('tab-btn-' + t).classList.add('text-gray-500');
             });
             document.getElementById('tab-' + tabId).classList.remove('hidden');
             document.getElementById('tab-btn-' + tabId).classList.add('tab-active');
-            document.getElementById('tab-btn-' + tabId).classList.remove('text-stone-500');
+            document.getElementById('tab-btn-' + tabId).classList.remove('text-gray-500');
         }
 
         function showSyllabusDetails(subjectKey) {
@@ -1443,14 +1519,14 @@
                     datasets: [{
                         data: [21, 19, 15, 13, 11, 10, 10, 8],
                         backgroundColor: [
-                            '#059669', // ML Emerald
-                            '#b45309', // Prob Amber
-                            '#7c3aed', // GA Purple
-                            '#2563eb', // LA Blue
-                            '#be123c', // AI Rose
-                            '#0f766e', // Calc Teal
-                            '#4338ca', // DSA Indigo
-                            '#334155'  // DBMS Slate
+                            '#0B1D2E', // ML Navy
+                            '#C59B3F', // Prob Gold
+                            '#E2E8F0', // GA Slate
+                            '#142E45', // LA Lighter Navy
+                            '#D4AF60', // AI Lighter Gold
+                            '#1D405C', // Calc
+                            '#CBD5E1', // DSA
+                            '#2B5273'  // DBMS
                         ],
                         borderWidth: 0,
                         hoverOffset: 6
@@ -1462,24 +1538,16 @@
                     plugins: {
                         legend: {
                             position: window.innerWidth < 768 ? 'bottom' : 'right',
-                            labels: {
-                                font: { family: 'Inter', size: 12, weight: '500' },
-                                color: '#444',
-                                padding: 15
-                            }
+                            labels: { font: { family: 'Inter', size: 12, weight: '500' }, color: '#334155', padding: 15 }
                         },
                         tooltip: {
-                            backgroundColor: 'rgba(28, 25, 23, 0.9)',
+                            backgroundColor: 'rgba(11, 29, 46, 0.95)',
                             padding: 12,
                             bodyFont: { size: 14, family: 'Inter' },
-                            callbacks: {
-                                label: function (context) {
-                                    return ' ' + context.label + ': ' + context.raw + '%';
-                                }
-                            }
+                            callbacks: { label: function (context) { return ' ' + context.label + ': ~' + context.raw + '%'; } }
                         }
                     },
-                    cutout: '60%'
+                    cutout: '65%'
                 }
             });
         }
@@ -1493,7 +1561,7 @@
                     datasets: [{
                         label: 'IITM M.Tech DA Closing Score (out of 1000)',
                         data: [866, 768, 768, 690, 533, 537],
-                        backgroundColor: '#d97706',
+                        backgroundColor: '#C59B3F',
                         borderRadius: 6
                     }]
                 },
@@ -1501,30 +1569,12 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 1000,
-                            grid: { color: '#f5f5f4' },
-                            ticks: { font: { family: 'Inter', size: 11 } }
-                        },
-                        x: {
-                            grid: { display: false },
-                            ticks: { font: { family: 'Inter', size: 11, weight: '600' } }
-                        }
+                        y: { beginAtZero: true, max: 1000, grid: { color: '#E2E8F0' }, ticks: { font: { family: 'Inter', size: 11 }, color: '#64748b' } },
+                        x: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 11, weight: '600' }, color: '#0B1D2E' } }
                     },
                     plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top',
-                            labels: { font: { family: 'Inter', weight: '600' } }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    return ' Cutoff Score: ' + context.raw;
-                                }
-                            }
-                        }
+                        legend: { display: true, position: 'top', labels: { font: { family: 'Inter', weight: '600' }, color: '#0B1D2E' } },
+                        tooltip: { callbacks: { label: function (context) { return ' Cutoff Score: ' + context.raw; } } }
                     }
                 }
             });
@@ -1569,7 +1619,7 @@
 
             const userMsgDiv = document.createElement('div');
             userMsgDiv.className = 'flex justify-end';
-            userMsgDiv.innerHTML = `<div class="bg-amber-700 text-white rounded-lg rounded-tr-none p-3 md:p-4 max-w-[85%] shadow-sm"><p class="text-sm">${userText}</p></div>`;
+            userMsgDiv.innerHTML = `<div class="bg-navy-800 text-white rounded-lg rounded-tr-none p-3 md:p-4 max-w-[85%] shadow-sm border-b-2 border-gold-500"><p class="text-sm">${userText}</p></div>`;
             chatHistory.appendChild(userMsgDiv);
             chatHistory.scrollTop = chatHistory.scrollHeight;
 
@@ -1581,7 +1631,7 @@
             const loadingDiv = document.createElement('div');
             loadingDiv.className = 'flex justify-start';
             loadingDiv.id = 'typing-indicator';
-            loadingDiv.innerHTML = `<div class="bg-white border border-stone-200 rounded-lg rounded-tl-none p-4 max-w-[85%] shadow-sm flex items-center space-x-2"><div class="w-2 h-2 bg-stone-400 rounded-full animate-bounce"></div><div class="w-2 h-2 bg-stone-400 rounded-full animate-bounce" style="animation-delay: 0.15s"></div><div class="w-2 h-2 bg-stone-400 rounded-full animate-bounce" style="animation-delay: 0.3s"></div></div>`;
+            loadingDiv.innerHTML = `<div class="bg-white border border-gray-200 rounded-lg rounded-tl-none p-4 max-w-[85%] shadow-sm flex items-center space-x-2"><div class="w-2 h-2 bg-gold-400 rounded-full animate-bounce"></div><div class="w-2 h-2 bg-gold-400 rounded-full animate-bounce" style="animation-delay: 0.15s"></div><div class="w-2 h-2 bg-gold-400 rounded-full animate-bounce" style="animation-delay: 0.3s"></div></div>`;
             chatHistory.appendChild(loadingDiv);
             chatHistory.scrollTop = chatHistory.scrollHeight;
 
@@ -1602,7 +1652,7 @@
 
                     const modelMsgDiv = document.createElement('div');
                     modelMsgDiv.className = 'flex justify-start';
-                    modelMsgDiv.innerHTML = `<div class="bg-white border border-stone-200 rounded-lg rounded-tl-none p-3 md:p-4 max-w-[90%] shadow-sm text-sm text-stone-800 leading-relaxed overflow-x-auto">${formatMessage(replyText)}</div>`;
+                    modelMsgDiv.innerHTML = `<div class="bg-white border border-gray-200 rounded-lg rounded-tl-none p-3 md:p-4 max-w-[90%] shadow-sm text-sm text-gray-800 leading-relaxed overflow-x-auto">${formatMessage(replyText)}</div>`;
                     chatHistory.appendChild(modelMsgDiv);
                 } else {
                     throw new Error("Invalid response format");
