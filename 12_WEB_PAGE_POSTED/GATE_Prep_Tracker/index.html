@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GATE 2027 PREPARATION | ZETA RESEARCH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f4; 
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-active {
+            background-color: #e7e5e4;
+            color: #0f172a;
+            font-weight: 600;
+            border-right: 4px solid #b45309;
+        }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #d6d3d1;
+        }
+        .tab-active {
+            border-bottom: 2px solid #b45309;
+            color: #b45309;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="text-stone-800 flex h-screen overflow-hidden">
+
+    <!-- Chosen Palette: Warm Neutrals (Stone) with Amber/Bronze accents -->
+    <!-- Application Structure Plan: A dashboard-style SPA to replace a static 100-page PDF. It allows the user (Balavigneshwar) to navigate non-linearly between Strategy, Syllabus Data, Monthly Timeline, and Study Resources. This structure provides immediate access to critical data without scrolling through pages, enhancing focus and execution. -->
+    <!-- Visualization & Content Choices: Doughnut Chart (Chart.js) for Syllabus Weightage to show proportional importance. Bar Chart (Chart.js) for Cutoffs to compare categories side-by-side. Vertical HTML Timeline for monthly goals to visualize the journey. Unicode icons used for navigation instead of SVG to meet constraints. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <nav id="sidebar" class="bg-stone-100 w-64 flex-shrink-0 border-r border-stone-200 flex flex-col transition-transform duration-300 absolute md:relative z-20 h-full -translate-x-full md:translate-x-0">
+        <div class="p-6 border-b border-stone-200">
+            <h1 class="text-xl font-bold text-stone-900 leading-tight">GATE 2027<br><span class="text-sm font-normal text-amber-700">DATA SCIENCE & AI</span></h1>
+            <p class="text-xs text-stone-500 mt-2">By Balavigneshwar T G</p>
+            <p class="text-xs font-semibold text-stone-400">ZETA RESEARCH</p>
+        </div>
+        <div class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1">
+                <li><button onclick="nav('home')" id="nav-home" class="w-full text-left px-6 py-3 text-stone-600 hover:bg-stone-200 transition nav-active">🏠 Overview & Strategy</button></li>
+                <li><button onclick="nav('syllabus')" id="nav-syllabus" class="w-full text-left px-6 py-3 text-stone-600 hover:bg-stone-200 transition">📊 Syllabus Weightage</button></li>
+                <li><button onclick="nav('timeline')" id="nav-timeline" class="w-full text-left px-6 py-3 text-stone-600 hover:bg-stone-200 transition">⏳ Study Timeline</button></li>
+                <li><button onclick="nav('resources')" id="nav-resources" class="w-full text-left px-6 py-3 text-stone-600 hover:bg-stone-200 transition">📚 Master Resources</button></li>
+                <li><button onclick="nav('cutoffs')" id="nav-cutoffs" class="w-full text-left px-6 py-3 text-stone-600 hover:bg-stone-200 transition">🎯 IITM Cutoff Targets</button></li>
+            </ul>
+        </div>
+        <div class="p-4 border-t border-stone-200 text-xs text-stone-400 text-center">
+            Target: IIT Madras (Jul 2027)
+        </div>
+    </nav>
+
+    <div class="flex-1 flex flex-col h-full overflow-hidden relative">
+        <header class="bg-white shadow-sm z-10 p-4 flex justify-between items-center md:hidden">
+            <h2 class="text-lg font-bold text-stone-800">ZETA RESEARCH</h2>
+            <button onclick="toggleSidebar()" class="text-2xl p-2">☰</button>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-6 md:p-10 scroll-smooth">
+            
+            <section id="sec-home" class="max-w-4xl mx-auto block animate-fade-in">
+                <div class="bg-gradient-to-r from-amber-600 to-amber-800 rounded-xl p-8 text-white shadow-lg mb-8">
+                    <h2 class="text-3xl font-bold mb-2">GATE 2027 Preparation Protocol</h2>
+                    <p class="text-amber-100 text-lg">Target: M.Tech in Data Science & AI / M.S. (by Research) at IIT Madras.</p>
+                </div>
+                
+                <p class="text-stone-600 leading-relaxed mb-6 text-lg">
+                    Welcome to your personalized digital dashboard, Balavigneshwar. This tool is designed to replace a static PDF, providing an interactive, continually accessible roadmap from July 2026 to February 2027. It consolidates the exact syllabus weightage, official NPTEL/standard resources, and historical cutoffs required for an Anna University student to secure a seat at the Wadhwani School of Data Science and AI.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
+                        <div class="text-3xl mb-4">🎓</div>
+                        <h3 class="font-bold text-lg mb-2">Your Profile Advantage</h3>
+                        <p class="text-stone-600 text-sm">As an AI & DS undergrad, the GATE DA syllabus is native to you. You can bypass traditional CSE subjects (OS, Compilers) and focus deeply on applied Mathematics, ML, and Python programming.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
+                        <div class="text-3xl mb-4">🏛️</div>
+                        <h3 class="font-bold text-lg mb-2">The Dual Strategy</h3>
+                        <p class="text-stone-600 text-sm"><strong>Route 1:</strong> M.Tech DA (Direct admission via COAP, requires Top 150 Rank).<br><strong>Route 2:</strong> M.S. by Research (Requires ~650+ GATE score + Strong Interview). Prepare your GitHub portfolio alongside GATE.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200 border-l-4 border-l-amber-600">
+                    <h3 class="font-bold text-lg mb-2">Academic Prerequisite (Anna University)</h3>
+                    <p class="text-stone-600">Ensure you maintain a minimum of <strong>60% aggregate (or 6.5 CGPA)</strong> for M.Tech eligibility, and ideally <strong>70% (7.5 CGPA)</strong> to secure an M.S. research interview call at IIT Madras.</p>
+                </div>
+            </section>
+
+            <section id="sec-syllabus" class="max-w-5xl mx-auto hidden animate-fade-in">
+                <h2 class="text-3xl font-bold mb-4 text-stone-800">Syllabus & Score Weightage</h2>
+                <p class="text-stone-600 mb-8 leading-relaxed">
+                    Understanding exactly where marks are allocated is critical for efficiency. The GATE DA paper is heavily skewed towards Mathematics and Core ML. Use the interactive chart below to see the distribution. Click on the categories below the chart to see specific topics.
+                </p>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 mb-8">
+                    <div class="chart-container">
+                        <canvas id="weightageChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-stone-50 p-4 rounded-lg border border-stone-200 hover:shadow-md transition cursor-pointer" onclick="alert('MATH: Linear Algebra (Matrices, Eigen vectors, LU decomp), Calculus (Optimization), Prob & Stats (Distributions, Bayes, t-test). Core pillar of DA.')">
+                        <h4 class="font-bold text-amber-700">1. Engg. Mathematics</h4>
+                        <p class="text-xs text-stone-500 mt-1">~28 Marks. Click for details.</p>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-lg border border-stone-200 hover:shadow-md transition cursor-pointer" onclick="alert('ML & AI: Supervised/Unsupervised Learning, PCA, Search Strategies, Logic. Theoretical and numerical questions.')">
+                        <h4 class="font-bold text-emerald-700">2. Machine Learning & AI</h4>
+                        <p class="text-xs text-stone-500 mt-1">~28 Marks. Click for details.</p>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-lg border border-stone-200 hover:shadow-md transition cursor-pointer" onclick="alert('SYSTEMS: Python Programming, Data Structures (Trees, Graphs), Algorithms, DBMS (SQL, Normalization), Warehousing.')">
+                        <h4 class="font-bold text-blue-700">3. Systems & Prog.</h4>
+                        <p class="text-xs text-stone-500 mt-1">~29 Marks. Click for details.</p>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-lg border border-stone-200 hover:shadow-md transition cursor-pointer" onclick="alert('APTITUDE: Quantitative, Verbal, Spatial, and Analytical reasoning. Easy scoring area.')">
+                        <h4 class="font-bold text-purple-700">4. General Aptitude</h4>
+                        <p class="text-xs text-stone-500 mt-1">15 Marks (Fixed). Click for details.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sec-timeline" class="max-w-4xl mx-auto hidden animate-fade-in">
+                <h2 class="text-3xl font-bold mb-4 text-stone-800">8-Month Execution Timeline</h2>
+                <p class="text-stone-600 mb-8 leading-relaxed">
+                    This chronological roadmap maps out your study plan from July 2026 to the exam in February 2027. It breaks the massive syllabus into digestible monthly milestones to prevent burnout and ensure timely revision.
+                </p>
+
+                <div class="relative timeline-line pl-8 space-y-8">
+                    
+                    <div class="relative">
+                        <div class="absolute -left-10 mt-1 w-6 h-6 bg-amber-600 rounded-full border-4 border-stone-100 z-10 text-white text-xs flex items-center justify-center font-bold">1</div>
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-stone-200">
+                            <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">July 2026 - August 2026</span>
+                            <h3 class="text-xl font-bold mt-1 mb-2">Phase 1: The Mathematical Foundation</h3>
+                            <ul class="list-disc pl-5 text-stone-600 text-sm space-y-1">
+                                <li><strong>Goal:</strong> Master the language of AI. You cannot do ML without Math.</li>
+                                <li>Linear Algebra: Vectors, Matrices, Eigenvalues (Gilbert Strang).</li>
+                                <li>Probability & Statistics: Bayes, Distributions, Hypothesis Testing.</li>
+                                <li>Action: Register for GATE 2027 in late August.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute -left-10 mt-1 w-6 h-6 bg-emerald-600 rounded-full border-4 border-stone-100 z-10 text-white text-xs flex items-center justify-center font-bold">2</div>
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-stone-200">
+                            <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">September 2026 - October 2026</span>
+                            <h3 class="text-xl font-bold mt-1 mb-2">Phase 2: Core Machine Learning & AI</h3>
+                            <ul class="list-disc pl-5 text-stone-600 text-sm space-y-1">
+                                <li><strong>Goal:</strong> Implement conceptually. Understand math behind algorithms.</li>
+                                <li>Supervised/Unsupervised Learning (Regression, SVM, Trees, K-Means).</li>
+                                <li>AI Search Algorithms (A*, Minimax) and Logic.</li>
+                                <li>Action: Build a small GitHub project to solidify concepts (crucial for M.S. interviews).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute -left-10 mt-1 w-6 h-6 bg-blue-600 rounded-full border-4 border-stone-100 z-10 text-white text-xs flex items-center justify-center font-bold">3</div>
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-stone-200">
+                            <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">November 2026</span>
+                            <h3 class="text-xl font-bold mt-1 mb-2">Phase 3: Systems, Code & Databases</h3>
+                            <ul class="list-disc pl-5 text-stone-600 text-sm space-y-1">
+                                <li><strong>Goal:</strong> Secure the deterministic coding marks.</li>
+                                <li>Python Data Structures & Algorithms (Big-O, Trees, Graphs).</li>
+                                <li>DBMS: Relational Algebra, SQL Queries, Normalization.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute -left-10 mt-1 w-6 h-6 bg-purple-600 rounded-full border-4 border-stone-100 z-10 text-white text-xs flex items-center justify-center font-bold">4</div>
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-stone-200">
+                            <span class="text-xs font-bold text-purple-600 uppercase tracking-wider">December 2026 - January 2027</span>
+                            <h3 class="text-xl font-bold mt-1 mb-2">Phase 4: Consolidation & Mock Tests</h3>
+                            <ul class="list-disc pl-5 text-stone-600 text-sm space-y-1">
+                                <li><strong>Goal:</strong> Speed, accuracy, and minimizing negative marks.</li>
+                                <li>Complete General Aptitude syllabus.</li>
+                                <li>Create 1-page formula cheat sheets.</li>
+                                <li>Take minimum 10-15 full-length mock tests. Analyze mistakes rigorously.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute -left-10 mt-1 w-6 h-6 bg-stone-800 rounded-full border-4 border-stone-100 z-10 text-white text-xs flex items-center justify-center font-bold">5</div>
+                        <div class="bg-white p-5 rounded-lg border-2 border-stone-800 shadow-md">
+                            <span class="text-xs font-bold text-stone-800 uppercase tracking-wider">February 2027</span>
+                            <h3 class="text-xl font-bold mt-1">EXAM MONTH</h3>
+                            <p class="text-stone-600 text-sm">Review short notes only. Ensure sleep hygiene. Execute the plan.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="sec-resources" class="max-w-4xl mx-auto hidden animate-fade-in">
+                <h2 class="text-3xl font-bold mb-4 text-stone-800">Master Study Resources</h2>
+                <p class="text-stone-600 mb-8 leading-relaxed">
+                    Curated list of the absolute best materials specifically for the GATE DA paper. Do not waste time reading multiple books for one subject; stick to these proven standard resources.
+                </p>
+
+                <div class="flex border-b border-stone-300 mb-6 overflow-x-auto">
+                    <button class="px-4 py-2 font-medium text-sm whitespace-nowrap tab-active" id="tab-btn-math" onclick="switchTab('math')">Mathematics</button>
+                    <button class="px-4 py-2 font-medium text-sm whitespace-nowrap text-stone-500 hover:text-stone-800" id="tab-btn-ml" onclick="switchTab('ml')">ML & AI</button>
+                    <button class="px-4 py-2 font-medium text-sm whitespace-nowrap text-stone-500 hover:text-stone-800" id="tab-btn-sys" onclick="switchTab('sys')">Systems/DBMS</button>
+                    <button class="px-4 py-2 font-medium text-sm whitespace-nowrap text-stone-500 hover:text-stone-800" id="tab-btn-prac" onclick="switchTab('prac')">Practice Portals</button>
+                </div>
+
+                <div id="tab-math" class="bg-white p-6 rounded-lg shadow-sm border border-stone-200 block">
+                    <h3 class="text-lg font-bold text-amber-700 mb-4">Engineering Mathematics Core</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-xl mr-3">📺</span>
+                            <div>
+                                <h4 class="font-bold">Linear Algebra: Gilbert Strang (MIT OCW)</h4>
+                                <p class="text-sm text-stone-600">The global gold standard. Watch on YouTube. Focus on Matrices, Eigen vectors, and Vector spaces.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-xl mr-3">📺</span>
+                            <div>
+                                <h4 class="font-bold">Probability & Stats: Khan Academy / NPTEL</h4>
+                                <p class="text-sm text-stone-600">Use Khan Academy for intuition, then switch to NPTEL GATE portal for rigorous numerical problem solving.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-xl mr-3">📖</span>
+                            <div>
+                                <h4 class="font-bold">Book: Higher Engineering Mathematics (B.S. Grewal)</h4>
+                                <p class="text-sm text-stone-600">Use strictly as a reference for Calculus (Optimization) problems.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="tab-ml" class="bg-white p-6 rounded-lg shadow-sm border border-stone-200 hidden">
+                    <h3 class="text-lg font-bold text-emerald-700 mb-4">Machine Learning & Artificial Intelligence</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-xl mr-3">📺</span>
+                            <div>
+                                <h4 class="font-bold">StatQuest with Josh Starmer (YouTube)</h4>
+                                <p class="text-sm text-stone-600">Perfect for understanding the "why" and "how" behind ML algorithms (PCA, Trees, SVM) before tackling math.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-xl mr-3">📖</span>
+                            <div>
+                                <h4 class="font-bold">Book: Introduction to Statistical Learning (ISLR)</h4>
+                                <p class="text-sm text-stone-600">Read the chapters on Regression, Classification, and Unsupervised Learning. Extremely relevant for GATE DA.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-xl mr-3">📖</span>
+                            <div>
+                                <h4 class="font-bold">Book: AI - A Modern Approach (Stuart Russell)</h4>
+                                <p class="text-sm text-stone-600">Reference for Search Algorithms and Logic. Only read syllabus-specific sections.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="tab-sys" class="bg-white p-6 rounded-lg shadow-sm border border-stone-200 hidden">
+                    <h3 class="text-lg font-bold text-blue-700 mb-4">Programming, DSA & Databases</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-xl mr-3">💻</span>
+                            <div>
+                                <h4 class="font-bold">Python & DSA: GeeksForGeeks / Leetcode (Easy)</h4>
+                                <p class="text-sm text-stone-600">Focus on implementation of Stacks, Queues, Trees, and standard sorting/searching algorithms in Python.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-xl mr-3">📺</span>
+                            <div>
+                                <h4 class="font-bold">DBMS: Knowledge Gate (Sanchit Jain) / NPTEL</h4>
+                                <p class="text-sm text-stone-600">Excellent breakdowns of Normalization (1NF to BCNF) and Relational Algebra. High yield topics.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="tab-prac" class="bg-white p-6 rounded-lg shadow-sm border border-stone-200 hidden">
+                    <h3 class="text-lg font-bold text-purple-700 mb-4">Official Portals & Mock Tests</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-xl mr-3">🌐</span>
+                            <div>
+                                <h4 class="font-bold">NPTEL GATE Preparation Portal (Official)</h4>
+                                <p class="text-sm text-stone-600">Mandatory. Contains mapped video lectures and official previous year questions (GATE 2024, 2025, 2026).</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-xl mr-3">📝</span>
+                            <div>
+                                <h4 class="font-bold">Test Series (MadeEasy / GO / Ace Academy)</h4>
+                                <p class="text-sm text-stone-600">Purchase at least one reputed test series by December 2026. Mock tests are non-negotiable for time management.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </section>
+
+            <section id="sec-cutoffs" class="max-w-5xl mx-auto hidden animate-fade-in">
+                <h2 class="text-3xl font-bold mb-4 text-stone-800">Target Score & Cutoff Analysis</h2>
+                <p class="text-stone-600 mb-8 leading-relaxed">
+                    This section translates ambiguous targets into hard data. To secure an M.Tech DA seat via COAP at IIT Madras, you must aim for these historical cutoff scores (out of 1000). The chart allows you to visualize the competitive landscape based on your category.
+                </p>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 mb-8">
+                    <div class="chart-container">
+                        <canvas id="cutoffChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-stone-50 border border-stone-200 p-6 rounded-lg">
+                    <h3 class="font-bold text-lg mb-3">Translation: Marks vs. Rank</h3>
+                    <p class="text-sm text-stone-600 mb-4">GATE Score (out of 1000) is normalized. To achieve a <strong>Score of ~860</strong> (General Category cutoff), here are your raw targets:</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded border border-stone-200 text-center">
+                            <span class="block text-2xl font-bold text-amber-600">72 - 78</span>
+                            <span class="text-xs text-stone-500 uppercase tracking-wide">Target Marks (out of 100)</span>
+                        </div>
+                        <div class="bg-white p-4 rounded border border-stone-200 text-center">
+                            <span class="block text-2xl font-bold text-blue-600">Top 150</span>
+                            <span class="text-xs text-stone-500 uppercase tracking-wide">All India Rank (AIR)</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-stone-500 mt-4 italic">*Note: If your rank falls between 150 and 800 (Score ~650+), pivot immediately to applying for the M.S. (by Research) program on the IITM portal, which leverages an interview over raw rank.</p>
+                </div>
+            </section>
+
+            <footer class="mt-16 pt-8 border-t border-stone-200 text-center text-stone-400 text-xs">
+                <p>Prepared for Balavigneshwar T G | Zeta Research © 2026</p>
+                <p class="mt-1">For IIT Madras GATE 2027 DA Preparation</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <script>
+        const sections = ['home', 'syllabus', 'timeline', 'resources', 'cutoffs'];
+        let weightageChartInstance = null;
+        let cutoffChartInstance = null;
+
+        function nav(targetId) {
+            sections.forEach(sec => {
+                document.getElementById('sec-' + sec).classList.add('hidden');
+                document.getElementById('nav-' + sec).classList.remove('nav-active');
+            });
+            document.getElementById('sec-' + targetId).classList.remove('hidden');
+            document.getElementById('nav-' + targetId).classList.add('nav-active');
+
+            if (window.innerWidth < 768) {
+                toggleSidebar();
+            }
+
+            if (targetId === 'syllabus' && !weightageChartInstance) {
+                renderWeightageChart();
+            }
+            if (targetId === 'cutoffs' && !cutoffChartInstance) {
+                renderCutoffChart();
+            }
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('-translate-x-full');
+        }
+
+        function switchTab(tabId) {
+            const tabs = ['math', 'ml', 'sys', 'prac'];
+            tabs.forEach(t => {
+                document.getElementById('tab-' + t).classList.add('hidden');
+                document.getElementById('tab-btn-' + t).classList.remove('tab-active', 'text-stone-800');
+                document.getElementById('tab-btn-' + t).classList.add('text-stone-500');
+            });
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            document.getElementById('tab-btn-' + tabId).classList.add('tab-active');
+            document.getElementById('tab-btn-' + tabId).classList.remove('text-stone-500');
+        }
+
+        function renderWeightageChart() {
+            const ctx = document.getElementById('weightageChart').getContext('2d');
+            weightageChartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Engg. Mathematics', 'Machine Learning & AI', 'Systems & Programming', 'General Aptitude'],
+                    datasets: [{
+                        data: [28, 28, 29, 15],
+                        backgroundColor: [
+                            '#b45309', 
+                            '#059669', 
+                            '#2563eb', 
+                            '#7c3aed'  
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                font: { family: 'Inter', size: 13 },
+                                color: '#444'
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ' ' + context.label + ': ~' + context.raw + ' Marks';
+                                }
+                            }
+                        }
+                    },
+                    cutout: '65%'
+                }
+            });
+        }
+
+        function renderCutoffChart() {
+            const ctx = document.getElementById('cutoffChart').getContext('2d');
+            cutoffChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['General (Open)', 'OBC - NCL', 'EWS', 'SC', 'ST', 'PwD'],
+                    datasets: [{
+                        label: 'IITM M.Tech DA Closing Score (out of 1000)',
+                        data: [866, 768, 768, 690, 533, 537],
+                        backgroundColor: '#d97706',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 1000,
+                            grid: { color: '#e7e5e4' },
+                            ticks: { font: { family: 'Inter' } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { family: 'Inter' } }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: { font: { family: 'Inter' } }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ' Cutoff Score: ' + context.raw;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
